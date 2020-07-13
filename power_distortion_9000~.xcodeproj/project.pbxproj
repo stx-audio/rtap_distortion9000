@@ -7,14 +7,19 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		841712CC2091E46A00B02D54 /* power_distortion_9000_pd.c in Sources */ = {isa = PBXBuildFile; fileRef = 841712CB2091E46A00B02D54 /* power_distortion_9000_pd.c */; };
 		844237661FB4A69E005ACA50 /* m_pd.h in Headers */ = {isa = PBXBuildFile; fileRef = 844237651FB4A69D005ACA50 /* m_pd.h */; };
-		8444AFA020908EDD00AF0DDB /* stx_counter.c in Sources */ = {isa = PBXBuildFile; fileRef = 8444AF9F20908EDC00AF0DDB /* stx_counter.c */; };
+		84AEDB7920C2A91900256DE2 /* power_distortion_9000.c in Sources */ = {isa = PBXBuildFile; fileRef = 84AEDB7720C2A91900256DE2 /* power_distortion_9000.c */; };
+		84AEDB7A20C2A91900256DE2 /* power_distortion_9000.h in Headers */ = {isa = PBXBuildFile; fileRef = 84AEDB7820C2A91900256DE2 /* power_distortion_9000.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		841712CB2091E46A00B02D54 /* power_distortion_9000_pd.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = power_distortion_9000_pd.c; sourceTree = "<group>"; };
 		844237651FB4A69D005ACA50 /* m_pd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = m_pd.h; sourceTree = "<group>"; };
-		8444AF9F20908EDC00AF0DDB /* stx_counter.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = stx_counter.c; sourceTree = "<group>"; };
-		FA2927EC1A899B4C005A2BA9 /* stx_counter.pd_darwin */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = stx_counter.pd_darwin; sourceTree = BUILT_PRODUCTS_DIR; };
+		84AEDB7720C2A91900256DE2 /* power_distortion_9000.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = power_distortion_9000.c; sourceTree = "<group>"; };
+		84AEDB7820C2A91900256DE2 /* power_distortion_9000.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = power_distortion_9000.h; sourceTree = "<group>"; };
+		84AEDB7B20C2ADC100256DE2 /* stp_defines.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = stp_defines.h; sourceTree = "<group>"; };
+		FA2927EC1A899B4C005A2BA9 /* power_distortion_9000~.pd_darwin */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = "power_distortion_9000~.pd_darwin"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -38,7 +43,10 @@
 		FA2927E31A899B4C005A2BA9 = {
 			isa = PBXGroup;
 			children = (
-				8444AF9F20908EDC00AF0DDB /* stx_counter.c */,
+				84AEDB7B20C2ADC100256DE2 /* stp_defines.h */,
+				84AEDB7820C2A91900256DE2 /* power_distortion_9000.h */,
+				84AEDB7720C2A91900256DE2 /* power_distortion_9000.c */,
+				841712CB2091E46A00B02D54 /* power_distortion_9000_pd.c */,
 				844237651FB4A69D005ACA50 /* m_pd.h */,
 				FA2927ED1A899B4C005A2BA9 /* Products */,
 				844237731FB4A6E1005ACA50 /* Frameworks */,
@@ -48,7 +56,7 @@
 		FA2927ED1A899B4C005A2BA9 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				FA2927EC1A899B4C005A2BA9 /* stx_counter.pd_darwin */,
+				FA2927EC1A899B4C005A2BA9 /* power_distortion_9000~.pd_darwin */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -61,15 +69,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				844237661FB4A69E005ACA50 /* m_pd.h in Headers */,
+				84AEDB7A20C2A91900256DE2 /* power_distortion_9000.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		FA2927EB1A899B4C005A2BA9 /* stx_counter */ = {
+		FA2927EB1A899B4C005A2BA9 /* power_distortion_9000~ */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = FA2927F01A899B4C005A2BA9 /* Build configuration list for PBXNativeTarget "stx_counter" */;
+			buildConfigurationList = FA2927F01A899B4C005A2BA9 /* Build configuration list for PBXNativeTarget "power_distortion_9000~" */;
 			buildPhases = (
 				FA2927E81A899B4C005A2BA9 /* Sources */,
 				FA2927E91A899B4C005A2BA9 /* Frameworks */,
@@ -79,9 +88,9 @@
 			);
 			dependencies = (
 			);
-			name = stx_counter;
+			name = "power_distortion_9000~";
 			productName = "HelloWorld-pd-external";
-			productReference = FA2927EC1A899B4C005A2BA9 /* stx_counter.pd_darwin */;
+			productReference = FA2927EC1A899B4C005A2BA9 /* power_distortion_9000~.pd_darwin */;
 			productType = "com.apple.product-type.library.dynamic";
 		};
 /* End PBXNativeTarget section */
@@ -98,7 +107,7 @@
 					};
 				};
 			};
-			buildConfigurationList = FA2927E71A899B4C005A2BA9 /* Build configuration list for PBXProject "stx_counter" */;
+			buildConfigurationList = FA2927E71A899B4C005A2BA9 /* Build configuration list for PBXProject "power_distortion_9000~" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -111,7 +120,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				FA2927EB1A899B4C005A2BA9 /* stx_counter */,
+				FA2927EB1A899B4C005A2BA9 /* power_distortion_9000~ */,
 			);
 		};
 /* End PBXProject section */
@@ -121,7 +130,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8444AFA020908EDD00AF0DDB /* stx_counter.c in Sources */,
+				84AEDB7920C2A91900256DE2 /* power_distortion_9000.c in Sources */,
+				841712CC2091E46A00B02D54 /* power_distortion_9000_pd.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -163,7 +173,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				INSTALL_PATH = "akbinaural~";
+				INSTALL_PATH = "/Applications/Pd-0.49-1.app/Contents/Resources/extra ";
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -201,7 +211,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				INSTALL_PATH = "akbinaural~";
+				INSTALL_PATH = "/Applications/Pd-0.49-1.app/Contents/Resources/extra ";
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = macosx;
@@ -217,19 +227,20 @@
 				DYLIB_CURRENT_VERSION = 1;
 				EXECUTABLE_EXTENSION = pd_darwin;
 				EXECUTABLE_PREFIX = "";
+				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					PUREDATA,
 					VAS_OUTPUTVECTOR_USE_FLOAT,
 					VAS_INPUTVECTOR_USE_FLOAT,
 				);
-				INSTALL_PATH = "";
+				INSTALL_PATH = "/Applications/Pd-0.48-0.app/Contents/Resources/extra";
 				LIBRARY_SEARCH_PATHS = "";
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = (
 					"-undefined",
 					dynamic_lookup,
 				);
-				PRODUCT_NAME = stx_counter;
+				PRODUCT_NAME = "power_distortion_9000~";
 				SDKROOT = macosx;
 				USER_HEADER_SEARCH_PATHS = "";
 				VALID_ARCHS = "i386 x86_64";
@@ -245,19 +256,20 @@
 				DYLIB_CURRENT_VERSION = 1;
 				EXECUTABLE_EXTENSION = pd_darwin;
 				EXECUTABLE_PREFIX = "";
+				GCC_OPTIMIZATION_LEVEL = fast;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					PUREDATA,
 					VAS_OUTPUTVECTOR_USE_FLOAT,
 					VAS_INPUTVECTOR_USE_FLOAT,
 				);
-				INSTALL_PATH = "";
+				INSTALL_PATH = "/Applications/Pd-0.48-0.app/Contents/Resources/extra";
 				LIBRARY_SEARCH_PATHS = "";
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = (
 					"-undefined",
 					dynamic_lookup,
 				);
-				PRODUCT_NAME = stx_counter;
+				PRODUCT_NAME = "power_distortion_9000~";
 				SDKROOT = macosx;
 				USER_HEADER_SEARCH_PATHS = "";
 				VALID_ARCHS = "i386 x86_64";
@@ -267,7 +279,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		FA2927E71A899B4C005A2BA9 /* Build configuration list for PBXProject "stx_counter" */ = {
+		FA2927E71A899B4C005A2BA9 /* Build configuration list for PBXProject "power_distortion_9000~" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				FA2927EE1A899B4C005A2BA9 /* Debug */,
@@ -276,7 +288,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		FA2927F01A899B4C005A2BA9 /* Build configuration list for PBXNativeTarget "stx_counter" */ = {
+		FA2927F01A899B4C005A2BA9 /* Build configuration list for PBXNativeTarget "power_distortion_9000~" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				FA2927F11A899B4C005A2BA9 /* Debug */,
