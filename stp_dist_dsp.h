@@ -24,15 +24,15 @@ typedef float STP_OUTPUTVECTOR;
 
 /**
  * @struct stp_dist_dsp
- * @brief A structure for a brickwall limiter object <br>
+ * @brief A structure for a multiband distortion object <br>
  * @var stp::level The parameter value for adjusting the <br>
  * level of the incoming signal
  */
 
 typedef struct stp_dist_dsp
 {
-    float dryWet; /**< parameter for adjusting the level of the incoming signal */
-    float clippingLevel; /**< parameter for clipping the level of the incoming signal */
+    float dryWet; /**< parameter for adjusting amount of distortion for the incoming signal */
+    float distortionMod; /**< parameter for choosing the desired distortion mod */
 } stp_dist_dsp;
 
 /**
@@ -74,7 +74,7 @@ void stp_dist_dsp_setdryWet(stp_dist_dsp *x, float dryWet);
  * the gain class
  */
 
-void stp_dist_dsp_setClippingLevel(stp_dist_dsp *x, float clippingLevel);
+void stp_dist_dsp_setdistortionMod(stp_dist_dsp *x, float distortionMod);
 
 /**
  * @related stp_dist_dsp
@@ -101,7 +101,7 @@ void stp_dist_dsp_dryWet(stp_dist_dsp *x, STP_INPUTVECTOR *in, STP_OUTPUTVECTOR 
  * parameter -clippingLevel to either clippingLevel or -clippingLevel. <br>
  */
 
-void stp_dist_dsp_clip(stp_dist_dsp *x, STP_INPUTVECTOR *in, STP_OUTPUTVECTOR *out, int vectorSize);
+void stp_dist_dsp_distortionMod(stp_dist_dsp *x, STP_INPUTVECTOR *in, STP_OUTPUTVECTOR *out, int vectorSize);
 
 /**
  * @related stp_brickwall

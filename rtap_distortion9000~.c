@@ -92,7 +92,7 @@ void rtap_distortion9000_tilde_free(rtap_distortion9000_tilde *x)
  * For more information please refer to the <a href = "https://github.com/pure-data/externals-howto" > Pure Data Docs </a> <br>
  */
 
-void *rtap_distortion9000_tilde_new(t_floatarg dryWet, t_floatarg clippingLevel)
+void *rtap_distortion9000_tilde_new(t_floatarg dryWet, t_floatarg distortionMod)
 {
     rtap_distortion9000_tilde *x = (rtap_distortion9000_tilde *)pd_new(rtap_distortion9000_tilde_class);
     
@@ -100,7 +100,7 @@ void *rtap_distortion9000_tilde_new(t_floatarg dryWet, t_floatarg clippingLevel)
     x->x_out = outlet_new(&x->x_obj, &s_signal);
     x->dist_dsp = stp_dist_dsp_new();
     x->dist_dsp->dryWet = dryWet;
-    x->dist_dsp->clippingLevel = clippingLevel;
+    x->dist_dsp->distortionMod = distortionMod;
 
     return (void *)x;
 }
@@ -125,9 +125,9 @@ void rtap_distortion9000_tilde_setdryWet(rtap_distortion9000_tilde *x, float dry
  * @param makeUpLevel Sets the makeUpLevel parameter <br>
  */
 
-void rtap_distortion9000_tilde_setClippingLevel(rtap_distortion9000_tilde *x, float clippingLevel)
+void rtap_distortion9000_tilde_setdistortionMod(rtap_distortion9000_tilde *x, float distortionMod)
 {
-	stp_dist_dsp_setClippingLevel(x->dist_dsp, clippingLevel);
+	stp_dist_dsp_setdistortionMod(x->dist_dsp, distortionMod);
 }
 
 /**
@@ -151,6 +151,6 @@ void rtap_distortion9000_tilde_setup(void)
 
       class_addmethod(rtap_distortion9000_tilde_class, (t_method)rtap_distortion9000_tilde_dsp, gensym("dsp"), 0);
       class_addmethod(rtap_distortion9000_tilde_class, (t_method)rtap_distortion9000_tilde_setdryWet, gensym("drywet"), A_DEFFLOAT, 0);
-      class_addmethod(rtap_distortion9000_tilde_class, (t_method)rtap_distortion9000_tilde_setClippingLevel, gensym("clippinglevel"), A_DEFFLOAT, 0);
+      class_addmethod(rtap_distortion9000_tilde_class, (t_method)rtap_distortion9000_tilde_setdistortionMod, gensym("distortionMod"), A_DEFFLOAT, 0);
       CLASS_MAINSIGNALIN(rtap_distortion9000_tilde_class, rtap_distortion9000_tilde, f);
 }

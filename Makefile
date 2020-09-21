@@ -14,7 +14,7 @@ lib.name = rtap_distortion9000
 class.sources = rtap_distortion9000~.c
 
 #rtap_distortion9000~.class.sources  = stp_brickwall_testing.c
-rtap_distortion9000~.class.sources += stp_brickwall.c
+rtap_distortion9000~.class.sources += stp_dist_dsp.c
 
 # all extra files to be included in binary distribution of the library
 datafiles =
