@@ -1,6 +1,6 @@
 /**
  * @file stp_brickwall.h
- * @author Thomas Resch <br>
+ * @author Felix, Stephan, Lynn br>
  * Audiocommunication Group, Technical University Berlin <br>
  * University of Applied Sciences Nordwestschweiz (FHNW), Music-Academy, Research and Development <br>
  * A very advanced gain plugin <br>
@@ -31,7 +31,7 @@ typedef float STP_OUTPUTVECTOR;
 
 typedef struct stp_brickwall
 {
-    float makeUpLevel; /**< parameter for adjusting the level of the incoming signal */
+    float dryWet; /**< parameter for adjusting the level of the incoming signal */
     float clippingLevel; /**< parameter for clipping the level of the incoming signal */
 } stp_brickwall;
 
@@ -63,7 +63,7 @@ void stp_brickwall_free(stp_brickwall *x);
  * the gain class
  */
 
-void stp_brickwall_setMakeUpLevel(stp_brickwall *x, float makeUpLevel);
+void stp_brickwall_setdryWet(stp_brickwall *x, float dryWet);
 
 /**
  * @related stp_brickwall
@@ -78,7 +78,7 @@ void stp_brickwall_setClippingLevel(stp_brickwall *x, float clippingLevel);
 
 /**
  * @related stp_brickwall
- * @brief Performs the level makeup in realtime <br>
+ * @brief Performs the drywet ratio of the signal in realtime <br>
  * @param x My gain object <br>
  * @param in The input vector <br>
  * @param out The output vector <br>
@@ -87,7 +87,7 @@ void stp_brickwall_setClippingLevel(stp_brickwall *x, float clippingLevel);
  * with the parameter gain. <br>
  */
 
-void stp_brickwall_makeUp(stp_brickwall *x, STP_INPUTVECTOR *in, STP_OUTPUTVECTOR *out, int vectorSize);
+void stp_brickwall_dryWet(stp_brickwall *x, STP_INPUTVECTOR *in, STP_OUTPUTVECTOR *out, int vectorSize);
 
 /**
  * @related stp_brickwall

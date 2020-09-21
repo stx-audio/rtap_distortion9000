@@ -14,7 +14,7 @@
 
 #include "m_pd.h"
 #include "stp_brickwall.h"
-#include "stp_brickwall_testing.h"
+
 
 static t_class *rtap_distortion9000_tilde_class;
 
@@ -92,14 +92,14 @@ void rtap_distortion9000_tilde_free(rtap_distortion9000_tilde *x)
  * For more information please refer to the <a href = "https://github.com/pure-data/externals-howto" > Pure Data Docs </a> <br>
  */
 
-void *rtap_distortion9000_tilde_new(t_floatarg makeUpLevel, t_floatarg clippingLevel)
+void *rtap_distortion9000_tilde_new(t_floatarg dryWet, t_floatarg clippingLevel)
 {
     rtap_distortion9000_tilde *x = (rtap_distortion9000_tilde *)pd_new(rtap_distortion9000_tilde_class);
     
     //The main inlet is created automatically
     x->x_out = outlet_new(&x->x_obj, &s_signal);
     x->brickwall = stp_brickwall_new();
-    x->brickwall->makeUpLevel = makeUpLevel;
+    x->brickwall->dryWet = dryWet;
     x->brickwall->clippingLevel = clippingLevel;
 
     return (void *)x;
@@ -107,15 +107,15 @@ void *rtap_distortion9000_tilde_new(t_floatarg makeUpLevel, t_floatarg clippingL
 
 /**
  * @related stp_brickwall_tilde
- * @brief Sets the gain adjustment parameter. <br>
+ * @brief Sets the drywet adjustment parameter. <br>
  * @param x A pointer the stp_brickwall_tilde object <br>
  * @param level Sets the level parameter <br>
  * For more information please refer to the <a href = "https://github.com/pure-data/externals-howto" > Pure Data Docs </a> <br>
  */
 
-void rtap_distortion9000_tilde_setMakeUpLevel(rtap_distortion9000_tilde *x, float makeUpLevel)
+void rtap_distortion9000_tilde_setdryWet(rtap_distortion9000_tilde *x, float dryWet)
 {
-    stp_brickwall_setMakeUpLevel(x->brickwall, makeUpLevel);
+    stp_brickwall_setdryWet(x->brickwall, dryWet);
 }
 
 /**
@@ -137,12 +137,6 @@ void rtap_distortion9000_tilde_setClippingLevel(rtap_distortion9000_tilde *x, fl
  * @param makeUpLevel Sets the makeUpLevel parameter <br>
  */
 
-void rtap_distortion9000_tilde_integrationTest(rtap_distortion9000_tilde *x)
-{
-    stp_brickwallTest *test = stp_brickwallTest_new(x->brickwall, 32, 64);
-    stp_brickwallTest_integration(test);
-    stp_brickwallTest_free(test);
-}
 
 /**
  * @related stp_brickwall_tilde
@@ -156,8 +150,7 @@ void rtap_distortion9000_tilde_setup(void)
                                             sizeof(rtap_distortion9000_tilde), CLASS_DEFAULT, A_DEFFLOAT, A_DEFFLOAT, 0);
 
       class_addmethod(rtap_distortion9000_tilde_class, (t_method)rtap_distortion9000_tilde_dsp, gensym("dsp"), 0);
-      class_addmethod(rtap_distortion9000_tilde_class, (t_method)rtap_distortion9000_tilde_setMakeUpLevel, gensym("makeuplevel"), A_DEFFLOAT, 0);
+      class_addmethod(rtap_distortion9000_tilde_class, (t_method)rtap_distortion9000_tilde_setdryWet, gensym("drywet"), A_DEFFLOAT, 0);
       class_addmethod(rtap_distortion9000_tilde_class, (t_method)rtap_distortion9000_tilde_setClippingLevel, gensym("clippinglevel"), A_DEFFLOAT, 0);
-      class_addmethod(rtap_distortion9000_tilde_class, (t_method)rtap_distortion9000_tilde_integrationTest, gensym("integrationtest"), 0);
       CLASS_MAINSIGNALIN(rtap_distortion9000_tilde_class, rtap_distortion9000_tilde, f);
 }
