@@ -13,7 +13,7 @@
  */
 
 #include "m_pd.h"
-#include "stp_brickwall.h"
+#include "stp_dist_dsp.h"
 
 
 static t_class *rtap_distortion9000_tilde_class;
@@ -33,7 +33,7 @@ typedef struct rtap_distortion9000_tilde
 {
     t_object  x_obj;
     t_sample f;
-    stp_brickwall *brickwall;
+    stp_dist_dsp *dist_dsp;
     t_outlet *x_out;
 } rtap_distortion9000_tilde;
 
@@ -53,7 +53,7 @@ t_int *rtap_distortion9000_tilde_perform(t_int *w)
     t_sample  *out =  (t_sample *)(w[3]);
     int n =  (int)(w[4]);
 
-    stp_brickwall_perform(x->brickwall, in, out, n);
+    stp_dist_dsp_perform(x->dist_dsp, in, out, n);
 
     /* return a pointer to the dataspace for the next dsp-object */
     return (w+5);
@@ -82,11 +82,11 @@ void rtap_distortion9000_tilde_dsp(rtap_distortion9000_tilde *x, t_signal **sp)
 void rtap_distortion9000_tilde_free(rtap_distortion9000_tilde *x)
 {
     outlet_free(x->x_out);
-    stp_brickwall_free(x->brickwall);
+    stp_dist_dsp_free(x->dist_dsp);
 }
 
 /**
- * @related stp_brickwall_tilde
+ * @related stp_dist_dsp_tilde
  * @brief Creates a new stp_brickwall_tilde object.<br>
  * @param f Sets the initial gain value. <br>
  * For more information please refer to the <a href = "https://github.com/pure-data/externals-howto" > Pure Data Docs </a> <br>
@@ -98,49 +98,49 @@ void *rtap_distortion9000_tilde_new(t_floatarg dryWet, t_floatarg clippingLevel)
     
     //The main inlet is created automatically
     x->x_out = outlet_new(&x->x_obj, &s_signal);
-    x->brickwall = stp_brickwall_new();
-    x->brickwall->dryWet = dryWet;
-    x->brickwall->clippingLevel = clippingLevel;
+    x->dist_dsp = stp_dist_dsp_new();
+    x->dist_dsp->dryWet = dryWet;
+    x->dist_dsp->clippingLevel = clippingLevel;
 
     return (void *)x;
 }
 
 /**
- * @related stp_brickwall_tilde
+ * @related stp_dist_dsp_tilde
  * @brief Sets the drywet adjustment parameter. <br>
- * @param x A pointer the stp_brickwall_tilde object <br>
+ * @param x A pointer the stp_dist_dsp_tilde object <br>
  * @param level Sets the level parameter <br>
  * For more information please refer to the <a href = "https://github.com/pure-data/externals-howto" > Pure Data Docs </a> <br>
  */
 
 void rtap_distortion9000_tilde_setdryWet(rtap_distortion9000_tilde *x, float dryWet)
 {
-    stp_brickwall_setdryWet(x->brickwall, dryWet);
+	stp_dist_dsp_setdryWet(x->dist_dsp, dryWet);
 }
 
 /**
- * @related stp_brickwall_tilde
+ * @related stp_dist_dsp_tilde
  * @brief Sets the clipping level parameter. <br>
- * @param x A pointer the stp_brickwall_tilde object <br>
+ * @param x A pointer the stp_dist_dsp_tilde object <br>
  * @param makeUpLevel Sets the makeUpLevel parameter <br>
  */
 
 void rtap_distortion9000_tilde_setClippingLevel(rtap_distortion9000_tilde *x, float clippingLevel)
 {
-    stp_brickwall_setClippingLevel(x->brickwall, clippingLevel);
+	stp_dist_dsp_setClippingLevel(x->dist_dsp, clippingLevel);
 }
 
 /**
- * @related stp_brickwall_tilde
+ * @related stp_dist_dsp_tilde
  * @brief Sets the clipping level parameter. <br>
- * @param x A pointer the stp_brickwall_tilde object <br>
+ * @param x A pointer the stp_dist_dsp_tilde object <br>
  * @param makeUpLevel Sets the makeUpLevel parameter <br>
  */
 
 
 /**
- * @related stp_brickwall_tilde
- * @brief Setup of stp_brickwall_tilde <br>
+ * @related stp_dist_dsp_tilde
+ * @brief Setup of stp_dist_dsp_tilde <br>
  * For more information please refer to the <a href = "https://github.com/pure-data/externals-howto" > Pure Data Docs </a> <br>
  */
 
