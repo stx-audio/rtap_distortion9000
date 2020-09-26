@@ -1,0 +1,201 @@
+\hypertarget{structstp__dist__dsp}{}\doxysection{stp\+\_\+dist\+\_\+dsp Struct Reference}
+\label{structstp__dist__dsp}\index{stp\_dist\_dsp@{stp\_dist\_dsp}}
+
+
+A structure for a multiband distortion object ~\newline
+  
+
+
+
+
+{\ttfamily \#include $<$stp\+\_\+dist\+\_\+dsp.\+h$>$}
+
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+float \mbox{\hyperlink{structstp__dist__dsp_a5492008dbf17e9dd6538ce943b6a5030}{dry\+Wet}}
+\item 
+float \mbox{\hyperlink{structstp__dist__dsp_a1750250b8b7c9670b9b615e8d39756b4}{distortion\+Mod}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Related Functions}
+(Note that these are not member functions.) \begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structstp__dist__dsp}{stp\+\_\+dist\+\_\+dsp}} $\ast$ \mbox{\hyperlink{structstp__dist__dsp_abbda190afd71cb405a041446b4c9e250}{stp\+\_\+dist\+\_\+dsp\+\_\+new}} ()
+\begin{DoxyCompactList}\small\item\em Creates a new dist\+\_\+dsp object~\newline
+ The function creates a new \mbox{\hyperlink{structstp__dist__dsp}{stp\+\_\+dist\+\_\+dsp}} object ~\newline
+ \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{structstp__dist__dsp_a51c9da708d4233904f2a6f4670d1b193}{stp\+\_\+dist\+\_\+dsp\+\_\+free}} (\mbox{\hyperlink{structstp__dist__dsp}{stp\+\_\+dist\+\_\+dsp}} $\ast$x)
+\begin{DoxyCompactList}\small\item\em Frees a \mbox{\hyperlink{structstp__dist__dsp}{stp\+\_\+dist\+\_\+dsp}} object~\newline
+ \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{structstp__dist__dsp_afd76e4d68dcfe8501ac9662d5a7d5e4f}{stp\+\_\+dist\+\_\+dsp\+\_\+setdry\+Wet}} (\mbox{\hyperlink{structstp__dist__dsp}{stp\+\_\+dist\+\_\+dsp}} $\ast$x, float \mbox{\hyperlink{structstp__dist__dsp_a5492008dbf17e9dd6538ce943b6a5030}{dry\+Wet}})
+\begin{DoxyCompactList}\small\item\em Sets the drywet parameter ~\newline
+ \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{structstp__dist__dsp_ab71a7b070ef69a047f6661d3bd21c51b}{stp\+\_\+dist\+\_\+dsp\+\_\+setdistortion\+Mod}} (\mbox{\hyperlink{structstp__dist__dsp}{stp\+\_\+dist\+\_\+dsp}} $\ast$x, float \mbox{\hyperlink{structstp__dist__dsp_a1750250b8b7c9670b9b615e8d39756b4}{distortion\+Mod}})
+\begin{DoxyCompactList}\small\item\em Sets the clipping\+Level parameter ~\newline
+ \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{structstp__dist__dsp_a48750587c14092656024cdf6ecf0ba2a}{stp\+\_\+dist\+\_\+dsp\+\_\+dry\+Wet}} (\mbox{\hyperlink{structstp__dist__dsp}{stp\+\_\+dist\+\_\+dsp}} $\ast$x, S\+T\+P\+\_\+\+I\+N\+P\+U\+T\+V\+E\+C\+T\+OR $\ast$in, S\+T\+P\+\_\+\+O\+U\+T\+P\+U\+T\+V\+E\+C\+T\+OR $\ast$out, int vector\+Size)
+\begin{DoxyCompactList}\small\item\em Performs the drywet ratio of the signal in realtime ~\newline
+ \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{structstp__dist__dsp_af2e29e93288e915b746a58777e50a7dc}{stp\+\_\+dist\+\_\+dsp\+\_\+distortion\+Mod}} (\mbox{\hyperlink{structstp__dist__dsp}{stp\+\_\+dist\+\_\+dsp}} $\ast$x, S\+T\+P\+\_\+\+I\+N\+P\+U\+T\+V\+E\+C\+T\+OR $\ast$in, S\+T\+P\+\_\+\+O\+U\+T\+P\+U\+T\+V\+E\+C\+T\+OR $\ast$out, int vector\+Size)
+\begin{DoxyCompactList}\small\item\em Performs the clipping in realtime ~\newline
+ \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+A structure for a multiband distortion object ~\newline
+ 
+
+\doxysubsection{Friends And Related Function Documentation}
+\mbox{\Hypertarget{structstp__dist__dsp_af2e29e93288e915b746a58777e50a7dc}\label{structstp__dist__dsp_af2e29e93288e915b746a58777e50a7dc}} 
+\index{stp\_dist\_dsp@{stp\_dist\_dsp}!stp\_dist\_dsp\_distortionMod@{stp\_dist\_dsp\_distortionMod}}
+\index{stp\_dist\_dsp\_distortionMod@{stp\_dist\_dsp\_distortionMod}!stp\_dist\_dsp@{stp\_dist\_dsp}}
+\doxysubsubsection{\texorpdfstring{stp\_dist\_dsp\_distortionMod()}{stp\_dist\_dsp\_distortionMod()}}
+{\footnotesize\ttfamily void stp\+\_\+dist\+\_\+dsp\+\_\+distortion\+Mod (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structstp__dist__dsp}{stp\+\_\+dist\+\_\+dsp}} $\ast$}]{x,  }\item[{S\+T\+P\+\_\+\+I\+N\+P\+U\+T\+V\+E\+C\+T\+OR $\ast$}]{in,  }\item[{S\+T\+P\+\_\+\+O\+U\+T\+P\+U\+T\+V\+E\+C\+T\+OR $\ast$}]{out,  }\item[{int}]{vector\+Size }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [related]}}
+
+
+
+Performs the clipping in realtime ~\newline
+ 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & My gain object ~\newline
+ \\
+\hline
+{\em in} & The input vector ~\newline
+ \\
+\hline
+{\em out} & The output vector ~\newline
+ \\
+\hline
+{\em vector\+Size} & The vector\+Size ~\newline
+ The function stp\+\_\+brickwall\+\_\+clip sets every value of the input signal ~\newline
+ thats either greater then the parameter clipping\+Level or smaller then the ~\newline
+ parameter -\/clipping\+Level to either clipping\+Level or -\/clipping\+Level. ~\newline
+ \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{structstp__dist__dsp_a48750587c14092656024cdf6ecf0ba2a}\label{structstp__dist__dsp_a48750587c14092656024cdf6ecf0ba2a}} 
+\index{stp\_dist\_dsp@{stp\_dist\_dsp}!stp\_dist\_dsp\_dryWet@{stp\_dist\_dsp\_dryWet}}
+\index{stp\_dist\_dsp\_dryWet@{stp\_dist\_dsp\_dryWet}!stp\_dist\_dsp@{stp\_dist\_dsp}}
+\doxysubsubsection{\texorpdfstring{stp\_dist\_dsp\_dryWet()}{stp\_dist\_dsp\_dryWet()}}
+{\footnotesize\ttfamily void stp\+\_\+dist\+\_\+dsp\+\_\+dry\+Wet (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structstp__dist__dsp}{stp\+\_\+dist\+\_\+dsp}} $\ast$}]{x,  }\item[{S\+T\+P\+\_\+\+I\+N\+P\+U\+T\+V\+E\+C\+T\+OR $\ast$}]{in,  }\item[{S\+T\+P\+\_\+\+O\+U\+T\+P\+U\+T\+V\+E\+C\+T\+OR $\ast$}]{out,  }\item[{int}]{vector\+Size }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [related]}}
+
+
+
+Performs the drywet ratio of the signal in realtime ~\newline
+ 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & My gain object ~\newline
+ \\
+\hline
+{\em in} & The input vector ~\newline
+ \\
+\hline
+{\em out} & The output vector ~\newline
+ \\
+\hline
+{\em vector\+Size} & The vector\+Size ~\newline
+ The function stp\+\_\+brickwall\+\_\+make\+Up multiplies the input signal ~\newline
+ with the parameter gain. ~\newline
+ \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{structstp__dist__dsp_a51c9da708d4233904f2a6f4670d1b193}\label{structstp__dist__dsp_a51c9da708d4233904f2a6f4670d1b193}} 
+\index{stp\_dist\_dsp@{stp\_dist\_dsp}!stp\_dist\_dsp\_free@{stp\_dist\_dsp\_free}}
+\index{stp\_dist\_dsp\_free@{stp\_dist\_dsp\_free}!stp\_dist\_dsp@{stp\_dist\_dsp}}
+\doxysubsubsection{\texorpdfstring{stp\_dist\_dsp\_free()}{stp\_dist\_dsp\_free()}}
+{\footnotesize\ttfamily void stp\+\_\+dist\+\_\+dsp\+\_\+free (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structstp__dist__dsp}{stp\+\_\+dist\+\_\+dsp}} $\ast$}]{x }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [related]}}
+
+
+
+Frees a \mbox{\hyperlink{structstp__dist__dsp}{stp\+\_\+dist\+\_\+dsp}} object~\newline
+ 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & My dist\+\_\+dsp object to delete.~\newline
+ The function frees the allocated memory~\newline
+ of a gain object \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{structstp__dist__dsp_abbda190afd71cb405a041446b4c9e250}\label{structstp__dist__dsp_abbda190afd71cb405a041446b4c9e250}} 
+\index{stp\_dist\_dsp@{stp\_dist\_dsp}!stp\_dist\_dsp\_new@{stp\_dist\_dsp\_new}}
+\index{stp\_dist\_dsp\_new@{stp\_dist\_dsp\_new}!stp\_dist\_dsp@{stp\_dist\_dsp}}
+\doxysubsubsection{\texorpdfstring{stp\_dist\_dsp\_new()}{stp\_dist\_dsp\_new()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structstp__dist__dsp}{stp\+\_\+dist\+\_\+dsp}} $\ast$ stp\+\_\+dist\+\_\+dsp\+\_\+new (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [related]}}
+
+
+
+Creates a new dist\+\_\+dsp object~\newline
+ The function creates a new \mbox{\hyperlink{structstp__dist__dsp}{stp\+\_\+dist\+\_\+dsp}} object ~\newline
+ 
+
+\begin{DoxyReturn}{Returns}
+a pointer to the newly created \mbox{\hyperlink{structstp__dist__dsp}{stp\+\_\+dist\+\_\+dsp}} object ~\newline
+ 
+\end{DoxyReturn}
+\mbox{\Hypertarget{structstp__dist__dsp_ab71a7b070ef69a047f6661d3bd21c51b}\label{structstp__dist__dsp_ab71a7b070ef69a047f6661d3bd21c51b}} 
+\index{stp\_dist\_dsp@{stp\_dist\_dsp}!stp\_dist\_dsp\_setdistortionMod@{stp\_dist\_dsp\_setdistortionMod}}
+\index{stp\_dist\_dsp\_setdistortionMod@{stp\_dist\_dsp\_setdistortionMod}!stp\_dist\_dsp@{stp\_dist\_dsp}}
+\doxysubsubsection{\texorpdfstring{stp\_dist\_dsp\_setdistortionMod()}{stp\_dist\_dsp\_setdistortionMod()}}
+{\footnotesize\ttfamily void stp\+\_\+dist\+\_\+dsp\+\_\+setdistortion\+Mod (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structstp__dist__dsp}{stp\+\_\+dist\+\_\+dsp}} $\ast$}]{x,  }\item[{float}]{distortion\+Mod }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [related]}}
+
+
+
+Sets the clipping\+Level parameter ~\newline
+ 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & My stp\+\_\+brickwall object ~\newline
+ \\
+\hline
+{\em clipping\+Level} & The clipping\+Level value ~\newline
+ The function sets the clipping\+Level parameter of ~\newline
+ the gain class \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{structstp__dist__dsp_afd76e4d68dcfe8501ac9662d5a7d5e4f}\label{structstp__dist__dsp_afd76e4d68dcfe8501ac9662d5a7d5e4f}} 
+\index{stp\_dist\_dsp@{stp\_dist\_dsp}!stp\_dist\_dsp\_setdryWet@{stp\_dist\_dsp\_setdryWet}}
+\index{stp\_dist\_dsp\_setdryWet@{stp\_dist\_dsp\_setdryWet}!stp\_dist\_dsp@{stp\_dist\_dsp}}
+\doxysubsubsection{\texorpdfstring{stp\_dist\_dsp\_setdryWet()}{stp\_dist\_dsp\_setdryWet()}}
+{\footnotesize\ttfamily void stp\+\_\+dist\+\_\+dsp\+\_\+setdry\+Wet (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structstp__dist__dsp}{stp\+\_\+dist\+\_\+dsp}} $\ast$}]{x,  }\item[{float}]{dry\+Wet }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [related]}}
+
+
+
+Sets the drywet parameter ~\newline
+ 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & My \mbox{\hyperlink{structstp__dist__dsp}{stp\+\_\+dist\+\_\+dsp}} object ~\newline
+ \\
+\hline
+{\em dry\+Wet} & The dry\+Wet value ~\newline
+ The function sets the dry\+Wet parameter of ~\newline
+ the gain class \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{structstp__dist__dsp_a1750250b8b7c9670b9b615e8d39756b4}\label{structstp__dist__dsp_a1750250b8b7c9670b9b615e8d39756b4}} 
+\index{stp\_dist\_dsp@{stp\_dist\_dsp}!distortionMod@{distortionMod}}
+\index{distortionMod@{distortionMod}!stp\_dist\_dsp@{stp\_dist\_dsp}}
+\doxysubsubsection{\texorpdfstring{distortionMod}{distortionMod}}
+{\footnotesize\ttfamily float stp\+\_\+dist\+\_\+dsp\+::distortion\+Mod}
+
+parameter for choosing the desired distortion mod \mbox{\Hypertarget{structstp__dist__dsp_a5492008dbf17e9dd6538ce943b6a5030}\label{structstp__dist__dsp_a5492008dbf17e9dd6538ce943b6a5030}} 
+\index{stp\_dist\_dsp@{stp\_dist\_dsp}!dryWet@{dryWet}}
+\index{dryWet@{dryWet}!stp\_dist\_dsp@{stp\_dist\_dsp}}
+\doxysubsubsection{\texorpdfstring{dryWet}{dryWet}}
+{\footnotesize\ttfamily float stp\+\_\+dist\+\_\+dsp\+::dry\+Wet}
+
+parameter for adjusting amount of distortion for the incoming signal 
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{stp__dist__dsp_8h}{stp\+\_\+dist\+\_\+dsp.\+h}}\end{DoxyCompactItemize}
