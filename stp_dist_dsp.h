@@ -1,14 +1,10 @@
 /**
  * @file stp_dist_dsp.h
- * @author Lynn <br> Felix <br> Stephan
+ * @author Lynn, Felix, Stephan <br>
  * Audiocommunication Group, Technical University Berlin <br>
- * University of Applied Sciences Nordwestschweiz (FHNW), Music-Academy, Research and Development <br>
- * A very advanced gain plugin <br>
+ * @brief Audio Object for a distortion <br>
  * <br>
- * @brief Audio Object for a multiband distortion <br>
- * <br>
- * stp_brickwall allows for selecting the type of distortion and a drywet input<br>
- * of any incoming audio signal. <br>
+ * RTAP Distortion 9000 allows to select one of x distortion types and choose how much distortion will be applied to the signal. It is recommended to use multiple instances with bandpass filters to get the most out of this external.
  * <br>
  */
 
@@ -28,7 +24,6 @@ typedef float STP_OUTPUTVECTOR;
  * @var stp::level The parameter value for adjusting the <br>
  * level of the incoming signal
  */
-
 typedef struct stp_dist_dsp
 {
     float dryWet; /**< parameter for adjusting amount of distortion for the incoming signal */
@@ -41,7 +36,6 @@ typedef struct stp_dist_dsp
  * The function creates a new stp_dist_dsp object <br>
  * @return a pointer to the newly created stp_dist_dsp object <br>
  */
-
 stp_dist_dsp *stp_dist_dsp_new();
 
 /**
@@ -51,7 +45,6 @@ stp_dist_dsp *stp_dist_dsp_new();
  * The function frees the allocated memory<br>
  * of a gain object
  */
-
 void stp_dist_dsp_free(stp_dist_dsp *x);
 
 /**
@@ -62,7 +55,6 @@ void stp_dist_dsp_free(stp_dist_dsp *x);
  * The function sets the dryWet parameter of <br>
  * the gain class
  */
-
 void stp_dist_dsp_setdryWet(stp_dist_dsp *x, float dryWet);
 
 /**
@@ -73,7 +65,6 @@ void stp_dist_dsp_setdryWet(stp_dist_dsp *x, float dryWet);
  * The function sets the clippingLevel parameter of <br>
  * the gain class
  */
-
 void stp_dist_dsp_setdistortionMod(stp_dist_dsp *x, float distortionMod);
 
 /**
@@ -86,7 +77,6 @@ void stp_dist_dsp_setdistortionMod(stp_dist_dsp *x, float distortionMod);
  * The function stp_brickwall_makeUp multiplies the input signal <br>
  * with the parameter gain. <br>
  */
-
 void stp_dist_dsp_dryWet(stp_dist_dsp *x, STP_INPUTVECTOR *in, STP_OUTPUTVECTOR *out, int vectorSize);
 
 /**
@@ -100,7 +90,6 @@ void stp_dist_dsp_dryWet(stp_dist_dsp *x, STP_INPUTVECTOR *in, STP_OUTPUTVECTOR 
  * thats either greater then the parameter clippingLevel or smaller then the <br>
  * parameter -clippingLevel to either clippingLevel or -clippingLevel. <br>
  */
-
 void stp_dist_dsp_distortionMod(stp_dist_dsp *x, STP_INPUTVECTOR *in, STP_OUTPUTVECTOR *out, int vectorSize);
 
 /**
@@ -113,7 +102,6 @@ void stp_dist_dsp_distortionMod(stp_dist_dsp *x, STP_INPUTVECTOR *in, STP_OUTPUT
  * The function stp_brickwall_perform performs the gain adjustment of <br>
  * the incoming signal and copies the result to the output vector <br>
  */
-
 void stp_dist_dsp_perform(stp_dist_dsp *x, STP_INPUTVECTOR *in, STP_OUTPUTVECTOR *out, int vectorSize);
 
 #endif /* stp_brickwall_h */
