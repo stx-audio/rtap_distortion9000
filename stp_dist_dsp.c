@@ -1,3 +1,12 @@
+/**
+ * @file stp_brickwall_pd.c
+ * @author Lynn <br> Felix <br> Stephan
+ * Audiocommunication Group, Technical University Berlin <br>
+ * A distortion object for pure data <br>
+ * <br>
+ * @brief A Pure Data distortion object for generating overtones<br>
+ */
+
 #include "stp_dist_dsp.h"
 #include <math.h>
 stp_dist_dsp *stp_dist_dsp_new()
@@ -8,21 +17,49 @@ stp_dist_dsp *stp_dist_dsp_new()
     return x;
 }
 
+/**
+ * @related stp_dist_dsp_free
+ * @brief Adds stp_brickwall_tilde_perform to the signal chain. <br>
+ * @param x A pointer the stp_brickwall_tilde object <br>
+ * @param sp A pointer the input and output vectors <br>
+ * For more information please refer to the <a href = "https://github.com/pure-data/externals-howto" > Pure Data Docs </a> <br>
+ */
 void stp_dist_dsp_free(stp_dist_dsp *x)
 {
     free(x);
 }
 
+/**
+ * @related stp_dist_dsp_setdryWet
+ * @brief Adds stp_brickwall_tilde_perform to the signal chain. <br>
+ * @param x A pointer the stp_brickwall_tilde object <br>
+ * @param sp A pointer the input and output vectors <br>
+ * For more information please refer to the <a href = "https://github.com/pure-data/externals-howto" > Pure Data Docs </a> <br>
+ */
 void stp_dist_dsp_setdryWet(stp_dist_dsp *x, float dryWet)
 {
     x->dryWet = dryWet;
 }
 
+/**
+ * @related stp_dist_dsp_setdistortionMod
+ * @brief Adds stp_brickwall_tilde_perform to the signal chain. <br>
+ * @param x A pointer the stp_brickwall_tilde object <br>
+ * @param sp A pointer the input and output vectors <br>
+ * For more information please refer to the <a href = "https://github.com/pure-data/externals-howto" > Pure Data Docs </a> <br>
+ */
 void stp_dist_dsp_setdistortionMod(stp_dist_dsp *x, float distortionMod )
 {
     x->distortionMod = distortionMod ;
 }
 
+/**
+ * @related sgn
+ * @brief Adds stp_brickwall_tilde_perform to the signal chain. <br>
+ * @param x A pointer the stp_brickwall_tilde object <br>
+ * @param sp A pointer the input and output vectors <br>
+ * For more information please refer to the <a href = "https://github.com/pure-data/externals-howto" > Pure Data Docs </a> <br>
+ */
 float sgn(float x)
 {
 	if (x>0)
@@ -41,7 +78,13 @@ float sgn(float x)
 }
 
 
-
+/**
+ * @related stp_dist_dsp_dryWet
+ * @brief Adds stp_brickwall_tilde_perform to the signal chain. <br>
+ * @param x A pointer the stp_brickwall_tilde object <br>
+ * @param sp A pointer the input and output vectors <br>
+ * For more information please refer to the <a href = "https://github.com/pure-data/externals-howto" > Pure Data Docs </a> <br>
+ */
 void stp_dist_dsp_dryWet(stp_dist_dsp *x, STP_INPUTVECTOR *in, STP_OUTPUTVECTOR *out, int vectorSize)
 {
     int i = 0;
@@ -98,6 +141,14 @@ void stp_dist_dsp_dryWet(stp_dist_dsp *x, STP_INPUTVECTOR *in, STP_OUTPUTVECTOR 
     }
 }
 **/
+
+/**
+ * @related stp_dist_dsp_perform
+ * @brief Adds stp_brickwall_tilde_perform to the signal chain. <br>
+ * @param x A pointer the stp_brickwall_tilde object <br>
+ * @param sp A pointer the input and output vectors <br>
+ * For more information please refer to the <a href = "https://github.com/pure-data/externals-howto" > Pure Data Docs </a> <br>
+ */
 void stp_dist_dsp_perform(stp_dist_dsp *x, STP_INPUTVECTOR *in, STP_OUTPUTVECTOR *out, int vectorSize)
 {
 	stp_dist_dsp_dryWet(x, in, out, vectorSize);

@@ -1,6 +1,6 @@
 /**
  * @file stp_dist_dsp.h
- * @author Felix, Stephan, Lynn br>
+ * @author Lynn <br> Felix <br> Stephan
  * Audiocommunication Group, Technical University Berlin <br>
  * University of Applied Sciences Nordwestschweiz (FHNW), Music-Academy, Research and Development <br>
  * A very advanced gain plugin <br>
