@@ -8,13 +8,17 @@
 
 /* Begin PBXBuildFile section */
 		844237661FB4A69E005ACA50 /* m_pd.h in Headers */ = {isa = PBXBuildFile; fileRef = 844237651FB4A69D005ACA50 /* m_pd.h */; };
-		8444AFA020908EDD00AF0DDB /* stx_counter.c in Sources */ = {isa = PBXBuildFile; fileRef = 8444AF9F20908EDC00AF0DDB /* stx_counter.c */; };
+		AE959622251F577C000E74B1 /* stp_dist_dsp.h in Headers */ = {isa = PBXBuildFile; fileRef = AE959620251F577C000E74B1 /* stp_dist_dsp.h */; };
+		AE959623251F577C000E74B1 /* stp_dist_dsp.c in Sources */ = {isa = PBXBuildFile; fileRef = AE959621251F577C000E74B1 /* stp_dist_dsp.c */; };
+		AE959627251F578C000E74B1 /* rtap_distortion9000~.c in Sources */ = {isa = PBXBuildFile; fileRef = AE959626251F578C000E74B1 /* rtap_distortion9000~.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		844237651FB4A69D005ACA50 /* m_pd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = m_pd.h; sourceTree = "<group>"; };
-		8444AF9F20908EDC00AF0DDB /* stx_counter.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = stx_counter.c; sourceTree = "<group>"; };
-		FA2927EC1A899B4C005A2BA9 /* stx_counter.pd_darwin */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = stx_counter.pd_darwin; sourceTree = BUILT_PRODUCTS_DIR; };
+		AE959620251F577C000E74B1 /* stp_dist_dsp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = stp_dist_dsp.h; sourceTree = "<group>"; };
+		AE959621251F577C000E74B1 /* stp_dist_dsp.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = stp_dist_dsp.c; sourceTree = "<group>"; };
+		AE959626251F578C000E74B1 /* rtap_distortion9000~.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = "rtap_distortion9000~.c"; sourceTree = "<group>"; };
+		FA2927EC1A899B4C005A2BA9 /* rtap_distortion9000~.pd_darwin */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = "rtap_distortion9000~.pd_darwin"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -38,7 +42,9 @@
 		FA2927E31A899B4C005A2BA9 = {
 			isa = PBXGroup;
 			children = (
-				8444AF9F20908EDC00AF0DDB /* stx_counter.c */,
+				AE959620251F577C000E74B1 /* stp_dist_dsp.h */,
+				AE959621251F577C000E74B1 /* stp_dist_dsp.c */,
+				AE959626251F578C000E74B1 /* rtap_distortion9000~.c */,
 				844237651FB4A69D005ACA50 /* m_pd.h */,
 				FA2927ED1A899B4C005A2BA9 /* Products */,
 				844237731FB4A6E1005ACA50 /* Frameworks */,
@@ -48,7 +54,7 @@
 		FA2927ED1A899B4C005A2BA9 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				FA2927EC1A899B4C005A2BA9 /* stx_counter.pd_darwin */,
+				FA2927EC1A899B4C005A2BA9 /* rtap_distortion9000~.pd_darwin */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -60,6 +66,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AE959622251F577C000E74B1 /* stp_dist_dsp.h in Headers */,
 				844237661FB4A69E005ACA50 /* m_pd.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -67,9 +74,9 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		FA2927EB1A899B4C005A2BA9 /* stx_counter */ = {
+		FA2927EB1A899B4C005A2BA9 /* rtap_distortion9000~ */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = FA2927F01A899B4C005A2BA9 /* Build configuration list for PBXNativeTarget "stx_counter" */;
+			buildConfigurationList = FA2927F01A899B4C005A2BA9 /* Build configuration list for PBXNativeTarget "rtap_distortion9000~" */;
 			buildPhases = (
 				FA2927E81A899B4C005A2BA9 /* Sources */,
 				FA2927E91A899B4C005A2BA9 /* Frameworks */,
@@ -79,9 +86,9 @@
 			);
 			dependencies = (
 			);
-			name = stx_counter;
+			name = "rtap_distortion9000~";
 			productName = "HelloWorld-pd-external";
-			productReference = FA2927EC1A899B4C005A2BA9 /* stx_counter.pd_darwin */;
+			productReference = FA2927EC1A899B4C005A2BA9 /* rtap_distortion9000~.pd_darwin */;
 			productType = "com.apple.product-type.library.dynamic";
 		};
 /* End PBXNativeTarget section */
@@ -98,7 +105,7 @@
 					};
 				};
 			};
-			buildConfigurationList = FA2927E71A899B4C005A2BA9 /* Build configuration list for PBXProject "stx_counter" */;
+			buildConfigurationList = FA2927E71A899B4C005A2BA9 /* Build configuration list for PBXProject "rtap_distortion9000~" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -111,7 +118,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				FA2927EB1A899B4C005A2BA9 /* stx_counter */,
+				FA2927EB1A899B4C005A2BA9 /* rtap_distortion9000~ */,
 			);
 		};
 /* End PBXProject section */
@@ -121,7 +128,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8444AFA020908EDD00AF0DDB /* stx_counter.c in Sources */,
+				AE959623251F577C000E74B1 /* stp_dist_dsp.c in Sources */,
+				AE959627251F578C000E74B1 /* rtap_distortion9000~.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -229,7 +237,7 @@
 					"-undefined",
 					dynamic_lookup,
 				);
-				PRODUCT_NAME = stx_counter;
+				PRODUCT_NAME = "rtap_distortion9000~";
 				SDKROOT = macosx;
 				USER_HEADER_SEARCH_PATHS = "";
 				VALID_ARCHS = "i386 x86_64";
@@ -257,7 +265,7 @@
 					"-undefined",
 					dynamic_lookup,
 				);
-				PRODUCT_NAME = stx_counter;
+				PRODUCT_NAME = "rtap_distortion9000~";
 				SDKROOT = macosx;
 				USER_HEADER_SEARCH_PATHS = "";
 				VALID_ARCHS = "i386 x86_64";
@@ -267,7 +275,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		FA2927E71A899B4C005A2BA9 /* Build configuration list for PBXProject "stx_counter" */ = {
+		FA2927E71A899B4C005A2BA9 /* Build configuration list for PBXProject "rtap_distortion9000~" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				FA2927EE1A899B4C005A2BA9 /* Debug */,
@@ -276,7 +284,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		FA2927F01A899B4C005A2BA9 /* Build configuration list for PBXNativeTarget "stx_counter" */ = {
+		FA2927F01A899B4C005A2BA9 /* Build configuration list for PBXNativeTarget "rtap_distortion9000~" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				FA2927F11A899B4C005A2BA9 /* Debug */,
