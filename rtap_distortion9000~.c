@@ -1,6 +1,6 @@
 /**
  * @file stp_brickwall_pd.c
- * @author Lynn <br> Felix <br> Stephan
+ * @author Lynn, Felix, Stephan
  * Audiocommunication Group, Technical University Berlin <br>
  * A distortion object for pure data <br>
  * <br>
@@ -82,7 +82,7 @@ void rtap_distortion9000_tilde_free(rtap_distortion9000_tilde *x)
  * @param f Sets the initial gain value. <br>
  * For more information please refer to the <a href = "https://github.com/pure-data/externals-howto" > Pure Data Docs </a> <br>
  */
-void *rtap_distortion9000_tilde_new(t_floatarg dryWet, t_floatarg distortionMod)
+void *rtap_distortion9000_tilde_new(t_floatarg dryWet, t_floatarg distortionMod, t_floatarg saturation)
 {
     rtap_distortion9000_tilde *x = (rtap_distortion9000_tilde *)pd_new(rtap_distortion9000_tilde_class);
     
@@ -91,6 +91,7 @@ void *rtap_distortion9000_tilde_new(t_floatarg dryWet, t_floatarg distortionMod)
     x->dist_dsp = stp_dist_dsp_new();
     x->dist_dsp->dryWet = dryWet;
     x->dist_dsp->distortionMod = distortionMod;
+    x->dist_dsp->saturation = saturation;
 
     return (void *)x;
 }
@@ -104,7 +105,7 @@ void *rtap_distortion9000_tilde_new(t_floatarg dryWet, t_floatarg distortionMod)
  */
 void rtap_distortion9000_tilde_setdryWet(rtap_distortion9000_tilde *x, float dryWet)
 {
-	stp_dist_dsp_setdryWet(x->dist_dsp, dryWet);
+	stp_dist_dsp_setDryWet(x->dist_dsp, dryWet);
 }
 
 /**
@@ -115,7 +116,18 @@ void rtap_distortion9000_tilde_setdryWet(rtap_distortion9000_tilde *x, float dry
  */
 void rtap_distortion9000_tilde_setdistortionMod(rtap_distortion9000_tilde *x, float distortionMod)
 {
-	stp_dist_dsp_setdistortionMod(x->dist_dsp, distortionMod);
+	stp_dist_dsp_setDistortionMod(x->dist_dsp, distortionMod);
+}
+
+/**
+ * @related rtap_distortion9000_tilde_setdistortionMod
+ * @brief Sets the clipping level parameter. <br>
+ * @param x A pointer the stp_dist_dsp_tilde object <br>
+ * @param makeUpLevel Sets the makeUpLevel parameter <br>
+ */
+void rtap_distortion9000_tilde_setSaturation(rtap_distortion9000_tilde *x, float saturation)
+{
+    stp_dist_dsp_setSaturation(x->dist_dsp, saturation);
 }
 
 
@@ -126,11 +138,11 @@ void rtap_distortion9000_tilde_setdistortionMod(rtap_distortion9000_tilde *x, fl
  */
 void rtap_distortion9000_tilde_setup(void)
 {
-      rtap_distortion9000_tilde_class = class_new(gensym("rtap_distortion9000~"), (t_newmethod)rtap_distortion9000_tilde_new, (t_method)rtap_distortion9000_tilde_free,
-                                            sizeof(rtap_distortion9000_tilde), CLASS_DEFAULT, A_DEFFLOAT, A_DEFFLOAT, 0);
-
-      class_addmethod(rtap_distortion9000_tilde_class, (t_method)rtap_distortion9000_tilde_dsp, gensym("dsp"), 0);
-      class_addmethod(rtap_distortion9000_tilde_class, (t_method)rtap_distortion9000_tilde_setdryWet, gensym("drywet"), A_DEFFLOAT, 0);
-      class_addmethod(rtap_distortion9000_tilde_class, (t_method)rtap_distortion9000_tilde_setdistortionMod, gensym("distortionMod"), A_DEFFLOAT, 0);
-      CLASS_MAINSIGNALIN(rtap_distortion9000_tilde_class, rtap_distortion9000_tilde, f);
+    rtap_distortion9000_tilde_class = class_new(gensym("rtap_distortion9000~"), (t_newmethod)rtap_distortion9000_tilde_new, (t_method)rtap_distortion9000_tilde_free, sizeof(rtap_distortion9000_tilde), CLASS_DEFAULT, A_DEFFLOAT, A_DEFFLOAT, A_DEFFLOAT, 0);
+    
+    class_addmethod(rtap_distortion9000_tilde_class, (t_method)rtap_distortion9000_tilde_dsp, gensym("dsp"), 0);
+    class_addmethod(rtap_distortion9000_tilde_class, (t_method)rtap_distortion9000_tilde_setdryWet, gensym("drywet"), A_DEFFLOAT, 0);
+    class_addmethod(rtap_distortion9000_tilde_class, (t_method)rtap_distortion9000_tilde_setdistortionMod, gensym("distortionMod"), A_DEFFLOAT, 0);
+    class_addmethod(rtap_distortion9000_tilde_class, (t_method)rtap_distortion9000_tilde_setSaturation, gensym("saturation"), A_DEFFLOAT, 0);
+    CLASS_MAINSIGNALIN(rtap_distortion9000_tilde_class, rtap_distortion9000_tilde, f);
 }

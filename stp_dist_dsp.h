@@ -21,13 +21,15 @@ typedef float STP_OUTPUTVECTOR;
 /**
  * @struct stp_dist_dsp
  * @brief A structure for a multiband distortion object <br>
- * @var stp::level The parameter value for adjusting the <br>
- * level of the incoming signal
+ * @var stp::dryWet parameter for adjusting amount of distortion for the incoming signal<br>
+ * @var stp::distortionMod parameter for choosing the desired distortion mod <br>
+ * @var stp::saturation parameter for setting more saturation for saturation mods 2 (SIG), 4 (TANH), 5 (ATAN) and 6 (FEXP1)<br>
  */
 typedef struct stp_dist_dsp
 {
     float dryWet; /**< parameter for adjusting amount of distortion for the incoming signal */
     float distortionMod; /**< parameter for choosing the desired distortion mod */
+    float saturation; /**<parameter for setting more saturation for some saturation mods 2 (SIG), 4 (TANH), 5 (ATAN) and 6 (FEXP1)*/
 } stp_dist_dsp;
 
 /**
@@ -55,7 +57,7 @@ void stp_dist_dsp_free(stp_dist_dsp *x);
  * The function sets the dryWet parameter of <br>
  * the gain class
  */
-void stp_dist_dsp_setdryWet(stp_dist_dsp *x, float dryWet);
+void stp_dist_dsp_setDryWet(stp_dist_dsp *x, float dryWet);
 
 /**
  * @related stp_dist_dsp
@@ -65,7 +67,17 @@ void stp_dist_dsp_setdryWet(stp_dist_dsp *x, float dryWet);
  * The function sets the clippingLevel parameter of <br>
  * the gain class
  */
-void stp_dist_dsp_setdistortionMod(stp_dist_dsp *x, float distortionMod);
+void stp_dist_dsp_setDistortionMod(stp_dist_dsp *x, float distortionMod);
+
+/**
+ * @related stp_dist_dsp
+ * @brief Sets the clippingLevel parameter <br>
+ * @param x My stp_brickwall object <br>
+ * @param clippingLevel The clippingLevel value <br>
+ * The function sets the clippingLevel parameter of <br>
+ * the gain class
+ */
+void stp_dist_dsp_setSaturation(stp_dist_dsp *x, float distortionMod);
 
 /**
  * @related stp_dist_dsp

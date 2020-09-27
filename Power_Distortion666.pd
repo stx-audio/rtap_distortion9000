@@ -1,76 +1,73 @@
 #N canvas 0 23 1440 789 12;
 #X obj 596 505 rtap_distortion9000~;
-#X obj 595 770 dac~;
-#X floatatom 786 354 5 0 0 0 - - -;
+#X obj 593 585 dac~;
+#X floatatom 559 341 5 0 0 0 - - -;
 #N canvas 0 50 450 250 (subpatch) 0;
 #X array waveform 100 float 5;
-#A 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
-0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
-0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
-0;
-#X coords 0 5 100 -5 200 140 1 0 0;
-#X restore 1126 56 graph;
-#X obj 1172 696 tabwrite~ waveform;
-#X obj 1200 213 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
--1 -1;
-#X msg 776 389 drywet \$1;
-#X obj 787 327 hsl 128 15 0.01 1 1 1 empty empty Dry/Wet -2 -8 0 10
--262144 -1 -1 0 1;
+#A 0 -0.995164 -0.998725 -0.999988 -0.998965 -0.995645 -0.989998 -0.981981
+-0.971536 -0.958583 -0.943022 -0.924737 -0.903593 -0.879437 -0.852097
+-0.821383 -0.787087 -0.748998 -0.706882 -0.660497 -0.609592 -0.553911
+-0.493201 -0.427212 -0.355706 -0.278466 -0.195307 -0.106081 -0.0106851
+0.0859794 0.176533 0.260992 0.339496 0.412228 0.47939 0.541221 0.597967
+0.649882 0.697222 0.74024 0.779179 0.814275 0.84575 0.873804 0.898633
+0.920414 0.939304 0.955443 0.96895 0.979929 0.988464 0.994622 0.998445
+0.999963 0.999194 0.996131 0.99075 0.983009 0.972848 0.960189 0.944934
+0.926968 0.906151 0.882341 0.855367 0.825044 0.791171 0.753528 0.711886
+0.666003 0.615628 0.560499 0.50037 0.43499 0.364122 0.287546 0.205071
+0.116542 0.0218519 -0.0752871 -0.166541 -0.251686 -0.330857 -0.404231
+-0.472017 -0.534444 -0.591759 -0.644215 -0.692067 -0.735563 -0.774949
+-0.810466 -0.842336 -0.87077 -0.895961 -0.918084 -0.9373 -0.953749
+-0.967551 -0.978808 -0.987612;
+#X coords 0 3 99 -3 500 200 1 0 0;
+#X restore 743 55 graph;
+#X obj 699 615 tabwrite~ waveform;
+#X msg 559 377 drywet \$1;
+#X obj 562 300 hsl 200 30 0 1 0 1 empty empty Dry/Wet 0 -10 1 15 -4034
+-1 -1 0 1;
 #X msg 243 444 distortionMod \$1;
-#X msg 238 48 1;
-#X msg 238 77 2;
-#X obj 1190 252 metro 100;
-#X obj 588 126 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+#X obj 698 588 metro 100;
+#X obj 170 539 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
-#X obj 585 177 openpanel;
-#X obj 590 275 readsf~;
-#X msg 490 175 start;
-#X msg 485 222 stop;
-#X msg 632 226 open \$1;
-#X obj 647 341 osc~ 440;
-#X msg 238 104 3;
-#X msg 239 129 4;
-#X msg 239 153 5;
-#X msg 241 177 6;
-#X msg 240 200 7;
-#X msg 241 220 8;
-#X msg 241 242 9;
-#X msg 243 263 10;
-#X msg 242 286 11;
-#X msg 242 308 12;
-#X msg 242 331 13;
-#X msg 243 354 14;
-#X msg 244 378 15;
-#X msg 243 400 16;
-#X obj 597 626 *~ 0.5;
+#X obj 167 590 openpanel;
+#X obj 172 688 readsf~;
+#X msg 72 588 start;
+#X msg 67 635 stop;
+#X msg 214 639 open \$1;
+#X obj 596 479 osc~ 440;
+#X obj 596 551 *~ 0.5;
+#X floatatom 437 242 5 0 0 0 - - -;
+#X obj 438 199 hsl 200 30 1 10 0 1 empty empty Saturation_(2-4-5-6)
+-2 -10 1 15 -4032 -1 -1 0 1;
+#X obj 240 56 hradio 30 1 0 6 empty empty Soft_Shape_Waveshaper 0 -10
+1 15 -257985 -1 -1 5;
+#X obj 698 563 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
+1;
+#X obj 274 197 + 6;
+#X obj 277 137 hradio 30 1 0 10 empty empty Exotic_Distortion 0 -10
+1 15 -260097 -1 -1 7;
+#X floatatom 244 270 3 0 0 0 - - -;
+#X msg 437 273 saturation \$1;
 #X connect 0 0 4 0;
-#X connect 0 0 33 0;
-#X connect 2 0 6 0;
-#X connect 5 0 11 0;
-#X connect 6 0 0 0;
-#X connect 7 0 2 0;
-#X connect 8 0 0 0;
-#X connect 9 0 8 0;
-#X connect 10 0 8 0;
-#X connect 11 0 4 0;
-#X connect 12 0 13 0;
-#X connect 13 0 17 0;
-#X connect 14 0 0 0;
-#X connect 15 0 14 0;
-#X connect 16 0 14 0;
-#X connect 17 0 14 0;
-#X connect 19 0 8 0;
+#X connect 0 0 16 0;
+#X connect 2 0 5 0;
+#X connect 5 0 0 0;
+#X connect 6 0 2 0;
+#X connect 7 0 0 0;
+#X connect 8 0 4 0;
+#X connect 9 0 10 0;
+#X connect 10 0 14 0;
+#X connect 11 0 0 0;
+#X connect 12 0 11 0;
+#X connect 13 0 11 0;
+#X connect 14 0 11 0;
+#X connect 15 0 0 0;
+#X connect 16 0 1 0;
+#X connect 16 0 1 1;
+#X connect 17 0 24 0;
+#X connect 18 0 17 0;
+#X connect 19 0 23 0;
 #X connect 20 0 8 0;
-#X connect 21 0 8 0;
-#X connect 22 0 8 0;
-#X connect 23 0 8 0;
-#X connect 24 0 8 0;
-#X connect 25 0 8 0;
-#X connect 26 0 8 0;
-#X connect 27 0 8 0;
-#X connect 28 0 8 0;
-#X connect 29 0 8 0;
-#X connect 31 0 8 0;
-#X connect 32 0 8 0;
-#X connect 33 0 1 0;
-#X connect 33 0 1 1;
+#X connect 21 0 23 0;
+#X connect 22 0 21 0;
+#X connect 23 0 7 0;
+#X connect 24 0 0 0;
