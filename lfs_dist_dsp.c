@@ -1,20 +1,28 @@
 /**
- * @file stp_brickwall_pd.c
+ * @file lfs_brickwall_pd.c
  * @author Lynn, Felix, Stephan
  * Audiocommunication Group, Technical University Berlin <br>
- * A distortion object for pure data <br>
+ * @brief Audio Object for distortion <br>
  * <br>
- * @brief A Pure Data distortion object for generating overtones<br>
+ * RTAP Distortion 9000 allows to select one of 16 distortion types and choose how much distortion will be applied to the signal. It is recommended to use multiple instances with bandpass filters to get the most out of this external.
+ * <br>
  */
 
-#include "stp_dist_dsp.h"
+#include "lfs_dist_dsp.h"
 #include <math.h>
 
 const float econst = M_E;
 
-stp_dist_dsp *stp_dist_dsp_new()
+/**
+ * @related lfs_dist_dsp_new
+ * @brief Creates a new dist_dsp object<br>
+ * The function creates a new lfs_dist_dsp object <br>
+ * @return a pointer to the newly created lfs_dist_dsp object <br>
+ * For more information please refer to the <a href = "https://github.com/pure-data/externals-howto" > Pure Data Docs </a> <br>
+ */
+lfs_dist_dsp *lfs_dist_dsp_new()
 {
-	stp_dist_dsp *x = (stp_dist_dsp *)malloc(sizeof(stp_dist_dsp));
+	lfs_dist_dsp *x = (lfs_dist_dsp *)malloc(sizeof(lfs_dist_dsp));
     x->dryWet = 0.0;
     x->distortionMod = 0;
     x->saturation = 0;
@@ -22,52 +30,54 @@ stp_dist_dsp *stp_dist_dsp_new()
 }
 
 /**
- * @related stp_dist_dsp_free
- * @brief Adds stp_brickwall_tilde_perform to the signal chain. <br>
- * @param x A pointer the stp_brickwall_tilde object <br>
- * @param sp A pointer the input and output vectors <br>
+ * @related lfs_dist_dsp_free
+ * @brief destructor of the dsp object<br>
+ * @param x A pointer to the lfs_dist_dsp object <br>
  * For more information please refer to the <a href = "https://github.com/pure-data/externals-howto" > Pure Data Docs </a> <br>
  */
-void stp_dist_dsp_free(stp_dist_dsp *x)
+void lfs_dist_dsp_free(lfs_dist_dsp *x)
 {
     free(x);
 }
 
 /**
- * @related stp_dist_dsp_setdryWet
- * @brief Adds stp_brickwall_tilde_perform to the signal chain. <br>
- * @param x A pointer the stp_brickwall_tilde object <br>
- * @param sp A pointer the input and output vectors <br>
- * For more information please refer to the <a href = "https://github.com/pure-data/externals-howto" > Pure Data Docs </a> <br>
+ * @related lfs_dist_dsp_setdryWet
+ * @brief Sets the dry wet value of the pd project. <br>
+ * @param x A pointer to the lfs_dist_dsp object <br>
+ * @param dryWet the dryWet value 0-1<br>
  */
-void stp_dist_dsp_setDryWet(stp_dist_dsp *x, float dryWet)
+void lfs_dist_dsp_setDryWet(lfs_dist_dsp *x, float dryWet)
 {
     x->dryWet = dryWet;
 }
 
 /**
- * @related stp_dist_dsp_setdistortionMod
- * @brief Adds stp_brickwall_tilde_perform to the signal chain. <br>
- * @param x A pointer the stp_brickwall_tilde object <br>
- * @param sp A pointer the input and output vectors <br>
- * For more information please refer to the <a href = "https://github.com/pure-data/externals-howto" > Pure Data Docs </a> <br>
+ * @related lfs_dist_dsp_setdistortionMod
+ * @brief Sets the distortion type of the pure data project <br>
+ * @param x A pointer to the lfs_dist_dsp object <br>
+ * @param distortionMod sets the distortion algorithm 0-16 <br>
  */
-void stp_dist_dsp_setDistortionMod(stp_dist_dsp *x, float distortionMod)
+void lfs_dist_dsp_setDistortionMod(lfs_dist_dsp *x, float distortionMod)
 {
     x->distortionMod = (int)distortionMod ;
 }
 
-void stp_dist_dsp_setSaturation(stp_dist_dsp *x, float saturation)
+/**
+ * @related lfs_dist_dsp_setSaturation
+ * @brief Sets the saturation of the pure data project <br>
+ * @param x A pointer to the lfs_dist_dsp object <br>
+ * @param distortionMod sets the saturation 1-10 of the saturation for algo 2,4,5,6 <br>
+ */
+void lfs_dist_dsp_setSaturation(lfs_dist_dsp *x, float saturation)
 {
     x->saturation = saturation ;
 }
 
 /**
  * @related sgn
- * @brief Adds stp_brickwall_tilde_perform to the signal chain. <br>
- * @param input A pointer the stp_brickwall_tilde object <br>
- * @param sp A pointer the input and output vectors <br>
- * For more information please refer to the <a href = "https://github.com/pure-data/externals-howto" > Pure Data Docs </a> <br>
+ * @brief Adds lfs_dist_dsp_perform to the signal chain. <br>
+ * @param input the input sample that will be calculated<br>
+ * @return the sign function, value will always be -1, 0 or 1<br>
  */
 float sgn(float input)
 {
@@ -75,26 +85,28 @@ float sgn(float input)
 }
 
 /**
- * @related sgn
- * @brief Adds stp_brickwall_tilde_perform to the signal chain. <br>
- * @param x A pointer the stp_brickwall_tilde object <br>
- * @param sp A pointer the input and output vectors <br>
- * For more information please refer to the <a href = "https://github.com/pure-data/externals-howto" > Pure Data Docs </a> <br>
+ * @related dry_wet_process
+ * @brief Adds lfs_dist_dsp_perform to the signal chain. <br>
+ * @param inSample A pointer to the input sample<br>
+ * @param outSample A pointer to the output sample<br>
+ * @param dryWet A pointer to the dry wet value as set in the pd patch<br>
  */
 void dry_wet_process(float* inSample, float* outSample, float* dryWet)
 {
     float dryWetInv = 1.f - *dryWet;
-    
+    // inSample is distorted signal, outSample is not yet distorted
     *outSample = (*inSample * dryWetInv) + (*outSample * *dryWet);
 }
 
 /**
- * @related stp_dist_dsp_dryWet
- * @brief Adds stp_brickwall_tilde_perform to the signal chain. <br>
- * @param x A pointer the stp_brickwall_tilde object <br>
- * @param sp A pointer the input and output vectors <br>
+ * @related lfs_dist_process
+ * @brief Adds the distortion to the signal, the signal processing is actually happening here<br>
+ * @param x Pointer to the lfs_dist_dsp object <br>
+ * @param in Pointer to the input vector <br>
+ * @param out Pointer to the output vector<br>
+ * @param vectorSize Length of the Vector<br>
  */
-void stp_dist_process(stp_dist_dsp *x, STP_INPUTVECTOR *in, STP_OUTPUTVECTOR *out, int vectorSize)
+void lfs_dist_process(lfs_dist_dsp *x, lfs_INPUTVECTOR *in, lfs_OUTPUTVECTOR *out, int vectorSize)
 {
     int i = 0;
     int mod = x->distortionMod;
@@ -207,7 +219,7 @@ void stp_dist_process(stp_dist_dsp *x, STP_INPUTVECTOR *in, STP_OUTPUTVECTOR *ou
             // ############ EXOTIC DISTORTIONS ##########
             // ##########################################
         
-        // Fuzz Exponential (FEXP2)
+        // Fuzz Exponential 2 (FEXP2)
         case 6:
             while(i < vectorSize)
             {
@@ -223,7 +235,7 @@ void stp_dist_process(stp_dist_dsp *x, STP_INPUTVECTOR *in, STP_OUTPUTVECTOR *ou
             }
             break;
         
-        // Exponential (EXP2)
+        // Exponential 2 (EXP2)
         case 7:
             while(i < vectorSize)
             {
@@ -373,13 +385,15 @@ void stp_dist_process(stp_dist_dsp *x, STP_INPUTVECTOR *in, STP_OUTPUTVECTOR *ou
 }
 
 /**
- * @related stp_dist_dsp_perform
- * @brief Adds stp_brickwall_tilde_perform to the signal chain. <br>
- * @param x A pointer the stp_brickwall_tilde object <br>
- * @param sp A pointer the input and output vectors <br>
+ * @related lfs_dist_dsp_perform
+ * @brief Adds lfs_dist_dsp_perform to the signal chain. <br>
+ * @param x Pointer to the lfs_dist_dsp object <br>
+ * @param in Pointer to the input vector <br>
+ * @param out Pointer to the output vector<br>
+ * @param vectorSize Length of the Vector<br>
  * For more information please refer to the <a href = "https://github.com/pure-data/externals-howto" > Pure Data Docs </a> <br>
  */
-void stp_dist_dsp_perform(stp_dist_dsp *x, STP_INPUTVECTOR *in, STP_OUTPUTVECTOR *out, int vectorSize)
+void lfs_dist_dsp_perform(lfs_dist_dsp *x, lfs_INPUTVECTOR *in, lfs_OUTPUTVECTOR *out, int vectorSize)
 {
-	stp_dist_process(x, in, out, vectorSize);
+	lfs_dist_process(x, in, out, vectorSize);
 }
