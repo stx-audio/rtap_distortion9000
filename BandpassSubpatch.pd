@@ -116,7 +116,7 @@
 -1 -1 10200 1;
 #X obj 595 260 nbx 5 14 -1e+37 1e+37 0 0 empty empty empty 0 -8 0 10
 -262144 -1 -1 1 256;
-#N canvas 82 34 979 542 distortion 1;
+#N canvas 82 34 979 542 distortion 0;
 #X msg 134 230 distortionMod \$1;
 #X msg 12 204 1;
 #X msg 134 198 2;
