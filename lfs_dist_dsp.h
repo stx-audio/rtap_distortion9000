@@ -30,6 +30,7 @@ typedef struct lfs_dist_dsp
     float dryWet; /**< parameter for adjusting amount of distortion for the incoming signal */
     float distortionMod; /**< parameter for choosing the desired distortion mod */
     float saturation; /**<parameter for setting more saturation for some saturation mods 2 (SIG), 4 (TANH), 5 (ATAN) and 6 (FEXP1)*/
+    int integrationstest;
 } lfs_dist_dsp;
 
 /**

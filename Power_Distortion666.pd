@@ -1,4 +1,4 @@
-#N canvas 2206 432 1440 789 12;
+#N canvas 1803 439 1440 789 12;
 #X obj 596 505 rtap_distortion9000~;
 #X obj 593 585 dac~;
 #X floatatom 559 341 5 0 0 0 - - -;
@@ -13,7 +13,7 @@
 #X obj 699 615 tabwrite~ waveform;
 #X msg 559 377 drywet \$1;
 #X obj 562 300 hsl 200 30 0 1 0 1 empty empty Dry/Wet 0 -10 1 15 -4034
--1 -1 0 1;
+-1 -1 1600 1;
 #X msg 243 444 distortionMod \$1;
 #X obj 698 588 metro 100;
 #X obj 170 539 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
@@ -27,10 +27,10 @@
 #X obj 596 551 *~ 0.5;
 #X floatatom 437 242 5 0 0 0 - - -;
 #X obj 438 199 hsl 200 30 1 10 0 1 empty empty Saturation_(2-4-5-6)
--2 -10 1 15 -4032 -1 -1 0 1;
+-2 -10 1 15 -4032 -1 -1 19000 1;
 #X obj 240 56 hradio 30 1 0 6 empty empty Soft_Shape_Waveshaper 0 -10
 1 15 -257985 -1 -1 5;
-#X obj 698 563 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+#X obj 698 563 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
 1;
 #X obj 274 197 + 6;
 #X obj 276 136 hradio 30 1 0 10 empty empty Exotic_Distortion 0 -10
@@ -38,9 +38,7 @@
 #X floatatom 244 270 3 0 0 0 - - -;
 #X msg 437 273 saturation \$1;
 #X obj 622 430 adc~;
-#X obj 873 381 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
--1 -1;
-#X msg 874 418 integrationstest;
+#X msg 807 468 integrationstest;
 #X connect 0 0 4 0;
 #X connect 0 0 16 0;
 #X connect 2 0 5 0;
@@ -64,7 +62,4 @@
 #X connect 22 0 21 0;
 #X connect 23 0 7 0;
 #X connect 24 0 0 0;
-#X connect 25 0 0 0;
-#X connect 25 1 0 0;
-#X connect 26 0 27 0;
-#X connect 27 0 0 0;
+#X connect 26 0 0 0;

@@ -10,8 +10,8 @@ lfs_dist_dsp_test *lfs_dist_dsp_test_new(lfs_dist_dsp *dist_process2Test, int ve
     x->testSignalLength = testSignalLength;
     x->vectorSize = vectorSize;
     x->numberOfVectors2Test = testSignalLength/vectorSize;
-    x->inputSignal = (STP_INPUTVECTOR *)malloc(testSignalLength * sizeof(STP_INPUTVECTOR));
-    x->outputSignal = (STP_OUTPUTVECTOR *)malloc(testSignalLength * sizeof(STP_OUTPUTVECTOR));
+    x->inputSignal = (lfs_INPUTVECTOR *)malloc(testSignalLength * sizeof(lfs_INPUTVECTOR));
+    x->outputSignal = (lfs_OUTPUTVECTOR *)malloc(testSignalLength * sizeof(lfs_OUTPUTVECTOR));
 
     return x;
 }
@@ -41,9 +41,9 @@ int lfs_dist_dsp_test_unitdryWet(lfs_dist_dsp_test *x)
     
     for(int i = 0; i < x->numberOfVectors2Test; i++)
     {
-        STP_INPUTVECTOR *inputSignalPtr = x->inputSignal + i * x->vectorSize;
-        STP_OUTPUTVECTOR *outputSignalPtr = x->outputSignal + i * x->vectorSize;
-        dry_wet_process(x->dist_process2Test, inputSignalPtr, outputSignalPtr, x->vectorSize);
+        lfs_INPUTVECTOR *inputSignalPtr = x->inputSignal + i * x->vectorSize;
+        lfs_OUTPUTVECTOR *outputSignalPtr = x->outputSignal + i * x->vectorSize;
+        lfs_dist_process(x->dist_process2Test, inputSignalPtr, outputSignalPtr, x->vectorSize);
     }
     
     for(int i = 0; i < x->testSignalLength; i++)
@@ -77,8 +77,8 @@ int lfs_dist_dsp_test_unitDistortionMod(lfs_dist_dsp_test *x)
     
     for(int i = 0; i < x->numberOfVectors2Test; i++)
     {
-        STP_INPUTVECTOR *inputSignalPtr = x->inputSignal + i * x->vectorSize;
-        STP_OUTPUTVECTOR *outputSignalPtr = x->outputSignal + i * x->vectorSize;
+        lfs_INPUTVECTOR *inputSignalPtr = x->inputSignal + i * x->vectorSize;
+        lfs_OUTPUTVECTOR *outputSignalPtr = x->outputSignal + i * x->vectorSize;
         lfs_dist_process(x->dist_process2Test, inputSignalPtr, outputSignalPtr, x->vectorSize);
     }
 
@@ -112,8 +112,8 @@ int lfs_dist_dsp_test_unitSaturation(lfs_dist_dsp_test *x)
 
     for(int i = 0; i < x->numberOfVectors2Test; i++)
     {
-        STP_INPUTVECTOR *inputSignalPtr = x->inputSignal + i * x->vectorSize;
-        STP_OUTPUTVECTOR *outputSignalPtr = x->outputSignal + i * x->vectorSize;
+        lfs_INPUTVECTOR *inputSignalPtr = x->inputSignal + i * x->vectorSize;
+        lfs_OUTPUTVECTOR *outputSignalPtr = x->outputSignal + i * x->vectorSize;
         lfs_dist_process(x->dist_process2Test, inputSignalPtr, outputSignalPtr, x->vectorSize);
     }
     
