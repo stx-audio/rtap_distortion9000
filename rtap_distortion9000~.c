@@ -12,6 +12,7 @@
 
 #include "m_pd.h"
 #include "lfs_dist_dsp.h"
+#include "lfs_dist_dsp_test.h"
 
 
 static t_class *rtap_distortion9000_tilde_class;
@@ -133,6 +134,13 @@ void rtap_distortion9000_tilde_setSaturation(rtap_distortion9000_tilde *x, float
     lfs_dist_dsp_setSaturation(x->dist_dsp, saturation);
 }
 
+void rtap_distortion9000_tilde_integrationTest(rtap_distortion9000_tilde *x)
+{
+    lfs_dist_dsp_test *test = lfs_dist_dsp_test_new(x->dist_dsp, 32, 64);
+    lfs_dist_dsp_test_integration(test);
+    lfs_dist_dsp_test_free(test);
+}
+
 
 /**
  * @related rtap_distortion9000_tilde_setup
@@ -147,5 +155,6 @@ void rtap_distortion9000_tilde_setup(void)
     class_addmethod(rtap_distortion9000_tilde_class, (t_method)rtap_distortion9000_tilde_setdryWet, gensym("drywet"), A_DEFFLOAT, 0);
     class_addmethod(rtap_distortion9000_tilde_class, (t_method)rtap_distortion9000_tilde_setdistortionMod, gensym("distortionMod"), A_DEFFLOAT, 0);
     class_addmethod(rtap_distortion9000_tilde_class, (t_method)rtap_distortion9000_tilde_setSaturation, gensym("saturation"), A_DEFFLOAT, 0);
+    class_addmethod(rtap_distortion9000_tilde_class, (t_method)rtap_distortion9000_tilde_integrationTest, gensym("integrationtest"), 0);
     CLASS_MAINSIGNALIN(rtap_distortion9000_tilde_class, rtap_distortion9000_tilde, f);
 }
