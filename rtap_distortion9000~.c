@@ -173,7 +173,7 @@ void rtap_distortion9000_tilde_setGain(rtap_distortion9000_tilde *x, float gain)
  */
 void rtap_distortion9000_tilde_setup(void)
 {
-    rtap_distortion9000_tilde_class = class_new(gensym("rtap_distortion9000~"), (t_newmethod)rtap_distortion9000_tilde_new, (t_method)rtap_distortion9000_tilde_free, sizeof(rtap_distortion9000_tilde), CLASS_DEFAULT, A_DEFFLOAT, A_DEFFLOAT, A_DEFFLOAT, A_DEFFLOAT, 0);
+    rtap_distortion9000_tilde_class = class_new(gensym("rtap_distortion9000~"), (t_newmethod)rtap_distortion9000_tilde_new, (t_method)rtap_distortion9000_tilde_free, sizeof(rtap_distortion9000_tilde), CLASS_DEFAULT, A_DEFFLOAT, A_DEFFLOAT, A_DEFFLOAT, A_DEFFLOAT,  0);
     
     class_addmethod(rtap_distortion9000_tilde_class, (t_method)rtap_distortion9000_tilde_dsp, gensym("dsp"), 0);
     class_addmethod(rtap_distortion9000_tilde_class, (t_method)rtap_distortion9000_tilde_setMix, gensym("mix"), A_DEFFLOAT, 0);
