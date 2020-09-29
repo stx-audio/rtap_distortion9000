@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "FA2927EB1A899B4C005A2BA9"
-               BuildableName = "stp_gain~.pd_darwin"
+               BuildableName = "lj_bandpass~.pd_darwin"
                BlueprintName = "lj_bandpass~"
                ReferencedContainer = "container:lj_bandpass~.xcodeproj">
             </BuildableReference>
@@ -48,14 +48,14 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "FA2927EB1A899B4C005A2BA9"
-            BuildableName = "stp_gain~.pd_darwin"
+            BuildableName = "lj_bandpass~.pd_darwin"
             BlueprintName = "lj_bandpass~"
             ReferencedContainer = "container:lj_bandpass~.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <CommandLineArguments>
          <CommandLineArgument
-            argument = "/Users/LJ/Desktop/lj_filters~/debugpatch.pd"
+            argument = "-open /Users/stephaneckes/SynologyDrive/GitHub_SourceCode/stx_counter/lj_filters~/debugpatch.pd"
             isEnabled = "YES">
          </CommandLineArgument>
       </CommandLineArguments>
@@ -70,7 +70,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "FA2927EB1A899B4C005A2BA9"
-            BuildableName = "stp_gain~.pd_darwin"
+            BuildableName = "lj_bandpass~.pd_darwin"
             BlueprintName = "lj_bandpass~"
             ReferencedContainer = "container:lj_bandpass~.xcodeproj">
          </BuildableReference>

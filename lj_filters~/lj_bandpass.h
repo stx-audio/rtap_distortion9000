@@ -96,6 +96,8 @@ void lj_bandpass_setHighCutoff(LJ_bandpass *x, float hp_fc);
 
 void lj_bandpass_setLowCutof(LJ_bandpass *x, float lp_fc);
 
+void lj_bandpass_setLowCutoff(LJ_bandpass *x, float lp_fc);
+
 /**
  * @related lj_bandpass
  * @brief Performs the application og the filter to each sample in realtime <br>

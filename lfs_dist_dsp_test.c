@@ -37,7 +37,7 @@ void lfs_dist_dsp_test_createInputSignal(lfs_dist_dsp_test *x)
 int lfs_dist_dsp_test_unitdryWet(lfs_dist_dsp_test *x)
 {
     int unitTestFailed = 0;
-    lfs_dist_dsp_setDryWet(x->dist_process2Test, 1);
+    lfs_dist_dsp_setMix(x->dist_process2Test, 1);
     
     for(int i = 0; i < x->numberOfVectors2Test; i++)
     {

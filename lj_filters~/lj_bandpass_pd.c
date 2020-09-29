@@ -143,14 +143,14 @@ void lj_bandpass_tilde_setup(void)
             (t_method)lj_bandpass_tilde_free,
         sizeof(LJ_bandpass_tilde),
             CLASS_DEFAULT,
-            A_DEFFLOAT, 0);
+            A_DEFFLOAT, A_DEFFLOAT, 0);
 
       class_addmethod(lj_bandpass_tilde_class, (t_method)lj_bandpass_tilde_dsp, gensym("dsp"), 0);
 
      /**adding messages for highpass and lowpass cutoffs*/
-      class_addmethod(lj_bandpass_tilde_class, (t_method)lj_bandpass_tilde_setHighCutoff, gensym("HighCutoff"), A_DEFFLOAT,0);
+      class_addmethod(lj_bandpass_tilde_class, (t_method)lj_bandpass_tilde_setHighCutoff, gensym("HighCutoff"), A_DEFFLOAT, 0);
     
-    class_addmethod(lj_bandpass_tilde_class, (t_method)lj_bandpass_tilde_setLowCutoff, gensym("LowCutoff"), A_DEFFLOAT,0);
+    class_addmethod(lj_bandpass_tilde_class, (t_method)lj_bandpass_tilde_setLowCutoff, gensym("LowCutoff"), A_DEFFLOAT, 0);
 
       CLASS_MAINSIGNALIN(lj_bandpass_tilde_class, LJ_bandpass_tilde, f);
 }
