@@ -23,9 +23,12 @@ const float econst = M_E;
 lfs_dist_dsp *lfs_dist_dsp_new()
 {
 	lfs_dist_dsp *x = (lfs_dist_dsp *)malloc(sizeof(lfs_dist_dsp));
-    x->dryWet = 0.0;
+    x->mix = 0;
     x->distortionMod = 0;
-    x->saturation = 0;
+    x->saturation = 1;
+    x->frequency = 1000;
+    x->quality = 1;
+    x->gain = 20;
     return x;
 }
 
@@ -41,14 +44,14 @@ void lfs_dist_dsp_free(lfs_dist_dsp *x)
 }
 
 /**
- * @related lfs_dist_dsp_setdryWet
+ * @related lfs_dist_dsp_setMix
  * @brief Sets the dry wet value of the pd project. <br>
  * @param x A pointer to the lfs_dist_dsp object <br>
- * @param dryWet the dryWet value 0-1<br>
+ * @param mix the mix value 0-1<br>
  */
-void lfs_dist_dsp_setDryWet(lfs_dist_dsp *x, float dryWet)
+void lfs_dist_dsp_setMix(lfs_dist_dsp *x, float mix)
 {
-    x->dryWet = dryWet;
+    x->mix = mix;
 }
 
 /**
@@ -74,6 +77,90 @@ void lfs_dist_dsp_setSaturation(lfs_dist_dsp *x, float saturation)
 }
 
 /**
+ * @related lfs_dist_dsp_setFrequency
+ * @brief Sets the saturation of the pure data project <br>
+ * @param x A pointer to the lfs_dist_dsp object <br>
+ * @param frequency sets the frequency of the bandpass filter between 50 and 20000 Hz <br>
+ */
+void lfs_dist_dsp_setFrequency(lfs_dist_dsp *x, float frequency)
+{
+    x->frequency = frequency;
+}
+
+/**
+ * @related lfs_dist_dsp_setQuality
+ * @brief Sets the saturation of the pure data project <br>
+ * @param x A pointer to the lfs_dist_dsp object <br>
+ * @param quality sets the quality of the algorithm between 0 and 16 <br>
+ */
+void lfs_dist_dsp_setQuality(lfs_dist_dsp *x, float quality)
+{
+    x->quality = quality;
+}
+
+/**
+ * @related lfs_dist_dsp_setFilterMod
+ * @brief Sets the saturation of the pure data project <br>
+ * @param x A pointer to the lfs_dist_dsp object <br>
+ * @param filterMod sets the filter mode of the algorithm (none, lp, bp) <br>
+ */
+void lfs_dist_dsp_setGain(lfs_dist_dsp *x, float gain)
+{
+    x->gain = gain;
+}
+
+
+// ###########################################
+// ################ BANDPASS #################
+// ###########################################
+
+float store1 = 0;
+float store2 = 0;
+float g, factor0, factor1, factor2;
+float sampleRate = 44100;
+
+/**
+ * @related processBandpass
+ * @brief should be called once for every sample <br>
+ * @param in the input sample<br>
+ * @param out the output sample<br>
+ */
+void processBandpass( float* in, float* out)
+{
+    float var3 = *in - store2;
+    float var1 = store1 * factor0 + var3 * factor1;
+    float var2 = store2 + store1 * factor1 + var3 * factor2;
+    
+    store1 = var1 * 2.0 - store1;
+    store2 = var2 * 2.0 - store2;
+    
+    *out = var1;
+}
+
+/**
+ * @related setBandpass
+ * @brief should be called once for every buffer <br>
+ * @param f the frequency of the filter<br>
+ * @param q the quality of the filter
+ */
+void setBandpass( float* f,  float* q )
+{
+    float factor = tanf( M_PI * *f * (1/sampleRate)) ;
+    
+    float res = 1.0f - (1.0f / (2.0f * *q));
+    
+    float k = 2.0 - 2.0 * res;
+    
+    factor0 = 1.0 / (1.0 + factor*(factor + k));
+    factor1 = factor*factor0;
+    factor2 = factor*factor1;
+}
+
+// ##########################################
+// ################ PROCESS #################
+// ##########################################
+
+/**
  * @related sgn
  * @brief Adds lfs_dist_dsp_perform to the signal chain. <br>
  * @param input the input sample that will be calculated<br>
@@ -89,14 +176,15 @@ float sgn(float input)
  * @brief Adds lfs_dist_dsp_perform to the signal chain. <br>
  * @param inSample A pointer to the input sample<br>
  * @param outSample A pointer to the output sample<br>
- * @param dryWet A pointer to the dry wet value as set in the pd patch<br>
+ * @param mix A pointer to the dry wet value as set in the pd patch<br>
  */
-void dry_wet_process(float* inSample, float* outSample, float* dryWet)
+void dry_wet_process(float* inSample, float* outSample, float* mix)
 {
-    float dryWetInv = 1.f - *dryWet;
+    float mixInv = 1.f - *mix;
     // inSample is distorted signal, outSample is not yet distorted
-    *outSample = (*inSample * dryWetInv) + (*outSample * *dryWet);
+    *outSample = (*inSample * mixInv) + (*outSample * *mix);
 }
+
 
 /**
  * @related lfs_dist_process
@@ -110,8 +198,16 @@ void lfs_dist_process(lfs_dist_dsp *x, lfs_INPUTVECTOR *in, lfs_OUTPUTVECTOR *ou
 {
     int i = 0;
     int mod = x->distortionMod;
-    float dryWet = x->dryWet;
+    float mix = x->mix;
     float sat = x->saturation;
+    float f = x->frequency;
+    float q = x->quality;
+    float A = powf(10, x->gain/40);
+    float filterFactor = 1/(q*A) * (A*A-1);
+    
+    setBandpass(&f, &q);
+    
+    // This construct is just as long as it is, to avoid processing the switch case for every sample!
     
     switch(mod){
             
@@ -125,11 +221,17 @@ void lfs_dist_process(lfs_dist_dsp *x, lfs_INPUTVECTOR *in, lfs_OUTPUTVECTOR *ou
             {
                 float inputSig  = *in++;
                 
+                float filterOut;
+                processBandpass(&inputSig, &filterOut);
+                inputSig = filterOut * filterFactor;
+                
                 // Distortion Algorithm
                 inputSig = (3.f * inputSig)/2 * ( 1 - (powf(inputSig, 2) / 3));
                 
+                inputSig *= 2.5;
+                
                 // Mix
-                dry_wet_process(&inputSig, out++, &dryWet);
+                dry_wet_process(&inputSig, out++, &mix);
         
                 i++;
             }break;
@@ -140,11 +242,17 @@ void lfs_dist_process(lfs_dist_dsp *x, lfs_INPUTVECTOR *in, lfs_OUTPUTVECTOR *ou
             {
                 float inputSig  = *in++;
                 
+                float filterOut;
+                processBandpass(&inputSig, &filterOut);
+                inputSig = filterOut * filterFactor;
+                
                 // Distortion Algorithm
                 inputSig = 2 * ( 1 / ( 1 + expf( -sat * inputSig ) )) - 1;
                 
+                inputSig *= 0.7;
+                
                 // Mix
-                dry_wet_process(&inputSig, out++, &dryWet);
+                dry_wet_process(&inputSig, out++, &mix);
                 
                 i++;
             }
@@ -156,11 +264,17 @@ void lfs_dist_process(lfs_dist_dsp *x, lfs_INPUTVECTOR *in, lfs_OUTPUTVECTOR *ou
             {
                 float inputSig  = *in++;
                 
+                float filterOut;
+                processBandpass(&inputSig, &filterOut);
+                inputSig = filterOut * filterFactor;
+                
                 // Distortion Algorithm
                 inputSig =  ((expf(inputSig)-1)*(M_E+1)) / ( (expf(inputSig) + 1)*(M_E - 1) );
                 
+                inputSig *= 3;
+                
                 // Mix
-                dry_wet_process(&inputSig, out++, &dryWet);
+                dry_wet_process(&inputSig, out++, &mix);
                 
                 i++;
             }
@@ -173,11 +287,17 @@ void lfs_dist_process(lfs_dist_dsp *x, lfs_INPUTVECTOR *in, lfs_OUTPUTVECTOR *ou
             {
                 float inputSig  = *in++;
                 
+                float filterOut;
+                processBandpass(&inputSig, &filterOut);
+                inputSig = filterOut * filterFactor;
+                
                 // Distortion Algorithm
                 inputSig =  tanhf(sat * inputSig) / tanhf(sat) ;
                 
+                inputSig *= 0.3;
+                
                 // Mix
-                dry_wet_process(&inputSig, out++, &dryWet);
+                dry_wet_process(&inputSig, out++, &mix);
                 
                 i++;
             }
@@ -189,11 +309,17 @@ void lfs_dist_process(lfs_dist_dsp *x, lfs_INPUTVECTOR *in, lfs_OUTPUTVECTOR *ou
             {
                 float inputSig  = *in++;
                 
+                float filterOut;
+                processBandpass(&inputSig, &filterOut);
+                inputSig = filterOut * filterFactor;
+                
                 // Distortion Algorithm
                 inputSig =  atanf(sat * inputSig) / atanf(sat) ;
                 
+                inputSig *= 0.4;
+                
                 // Mix
-                dry_wet_process(&inputSig, out++, &dryWet);
+                dry_wet_process(&inputSig, out++, &mix);
                 
                 i++;
             }
@@ -205,11 +331,17 @@ void lfs_dist_process(lfs_dist_dsp *x, lfs_INPUTVECTOR *in, lfs_OUTPUTVECTOR *ou
             {
                 float inputSig  = *in++;
                 
+                float filterOut;
+                processBandpass(&inputSig, &filterOut);
+                inputSig = filterOut * filterFactor;
+                
                 // Distortion Algorithm
-                inputSig =  sgn(inputSig) * ( (1-expf(-fabsf(sat * inputSig))) / (1 - expf(-sat)) ) ;
+                inputSig = sgn(inputSig) * ( (1-expf(-fabsf(sat * inputSig))) / (1 - expf(-sat)) ) ;
+
+                inputSig *= 0.3;
                 
                 // Mix
-                dry_wet_process(&inputSig, out++, &dryWet);
+                dry_wet_process(&inputSig, out++, &mix);
                 
                 i++;
             }
@@ -225,11 +357,17 @@ void lfs_dist_process(lfs_dist_dsp *x, lfs_INPUTVECTOR *in, lfs_OUTPUTVECTOR *ou
             {
                 float inputSig  = *in++;
                 
+                float filterOut;
+                processBandpass(&inputSig, &filterOut);
+                inputSig = filterOut * filterFactor;
+                
                 // Distortion Algorithm
                 inputSig = sgn(-inputSig) *  ( 1.f-expf(fabsf(inputSig) ) / (M_E-1.f) );
+                // Fuzz is super loud...
+                inputSig *= 0.03;
                 
                 // Mix
-                dry_wet_process(&inputSig, out++, &dryWet);
+                dry_wet_process(&inputSig, out++, &mix);
                 
                 i++;
             }
@@ -241,11 +379,15 @@ void lfs_dist_process(lfs_dist_dsp *x, lfs_INPUTVECTOR *in, lfs_OUTPUTVECTOR *ou
             {
                 float inputSig  = *in++;
                 
+                float filterOut;
+                processBandpass(&inputSig, &filterOut);
+                inputSig = filterOut * filterFactor;
+                
                 // Distortion Algorithm
                 inputSig = ( M_E - expf(1.f-inputSig) ) /  ( M_E-1.f) ;
                 
                 // Mix
-                dry_wet_process(&inputSig, out++, &dryWet);
+                dry_wet_process(&inputSig, out++, &mix);
                 
                 i++;
             }
@@ -257,11 +399,17 @@ void lfs_dist_process(lfs_dist_dsp *x, lfs_INPUTVECTOR *in, lfs_OUTPUTVECTOR *ou
             {
                 float inputSig  = *in++;
                 
+                float filterOut;
+                processBandpass(&inputSig, &filterOut);
+                inputSig = filterOut * filterFactor;
+                
                 // Distortion Algorithm
                 inputSig = 2.5f * (atanf(0.9f*inputSig)) + 2.5f * sqrtf(1-powf((0.9f * inputSig), 2.f)) - 2.5f ;
                 
+                inputSig *= 4;
+                
                 // Mix
-                dry_wet_process(&inputSig, out++, &dryWet);
+                dry_wet_process(&inputSig, out++, &mix);
                 
                 i++;
             }
@@ -273,11 +421,17 @@ void lfs_dist_process(lfs_dist_dsp *x, lfs_INPUTVECTOR *in, lfs_OUTPUTVECTOR *ou
             {
                 float inputSig  = *in++;
                 
+                float filterOut;
+                processBandpass(&inputSig, &filterOut);
+                inputSig = filterOut * filterFactor;
+                
                 // Distortion Algorithm
                 inputSig = powf(inputSig, 2.f) * sgn(inputSig);
                 
+                inputSig *= 0.05;
+                
                 // Mix
-                dry_wet_process(&inputSig, out++, &dryWet);
+                dry_wet_process(&inputSig, out++, &mix);
                 
                 i++;
             }
@@ -289,11 +443,18 @@ void lfs_dist_process(lfs_dist_dsp *x, lfs_INPUTVECTOR *in, lfs_OUTPUTVECTOR *ou
             {
                 float inputSig  = *in++;
                 
+                float filterOut;
+                processBandpass(&inputSig, &filterOut);
+                inputSig = filterOut * filterFactor;
+                
                 // Distortion Algorithm
                 inputSig = powf(inputSig, 3.f);
                 
+                // Cube is super quiet
+                inputSig *= 30;
+                
                 // Mix
-                dry_wet_process(&inputSig, out++, &dryWet);
+                dry_wet_process(&inputSig, out++, &mix);
         
                 i++;
             }
@@ -305,13 +466,17 @@ void lfs_dist_process(lfs_dist_dsp *x, lfs_INPUTVECTOR *in, lfs_OUTPUTVECTOR *ou
             {
                 float inputSig  = *in++;
                 
+                float filterOut;
+                processBandpass(&inputSig, &filterOut);
+                inputSig = filterOut * filterFactor;
+                
                 // Distortion Algorithm
                 if(fabsf(inputSig) > 0.5){
                     inputSig = 0.5f * sgn(inputSig);
                 }
                 
                 // Mix
-                dry_wet_process(&inputSig, out++, &dryWet);
+                dry_wet_process(&inputSig, out++, &mix);
                 
                 i++;
             }
@@ -323,11 +488,18 @@ void lfs_dist_process(lfs_dist_dsp *x, lfs_INPUTVECTOR *in, lfs_OUTPUTVECTOR *ou
             {
                 float inputSig  = *in++;
                 
+                float filterOut;
+                processBandpass(&inputSig, &filterOut);
+                inputSig = filterOut * filterFactor;
+                
                 // Distortion Algorithm
                 inputSig = 0.5f * (inputSig + fabsf(inputSig));
                 
                 // Mix
-                dry_wet_process(&inputSig, out++, &dryWet);
+                dry_wet_process(&inputSig, out++, &mix);
+                
+                // HWR is super quiet
+                inputSig *= 4;
                 
                 i++;
             }
@@ -339,11 +511,17 @@ void lfs_dist_process(lfs_dist_dsp *x, lfs_INPUTVECTOR *in, lfs_OUTPUTVECTOR *ou
             {
                 float inputSig  = *in++;
                 
+                float filterOut;
+                processBandpass(&inputSig, &filterOut);
+                inputSig = filterOut * filterFactor;
+                
                 // Distortion Algorithm
                 inputSig = fabsf(inputSig);
                 
+                inputSig *= 3.8;
+                
                 // Mix
-                dry_wet_process(&inputSig, out++, &dryWet);
+                dry_wet_process(&inputSig, out++, &mix);
                
                 i++;
             }
@@ -355,11 +533,17 @@ void lfs_dist_process(lfs_dist_dsp *x, lfs_INPUTVECTOR *in, lfs_OUTPUTVECTOR *ou
             {
                 float inputSig  = *in++;
                 
+                float filterOut;
+                processBandpass(&inputSig, &filterOut);
+                inputSig = filterOut * filterFactor;
+                
                 // Distortion Algorithm
                 inputSig = powf(inputSig, 2);
                 
+                inputSig *= 3.8;
+                
                 // Mix
-                dry_wet_process(&inputSig, out++, &dryWet);
+                dry_wet_process(&inputSig, out++, &mix);
                 
                 i++;
             }
@@ -371,18 +555,24 @@ void lfs_dist_process(lfs_dist_dsp *x, lfs_INPUTVECTOR *in, lfs_OUTPUTVECTOR *ou
             {
                 float inputSig  = *in++;
                 
+                float filterOut;
+                processBandpass(&inputSig, &filterOut);
+                inputSig = filterOut * filterFactor;
+                
                 // Distortion Algorithm
                 inputSig = sqrtf(fabsf(inputSig));
                 
+                inputSig *= 2.2;
+                
                 // Mix
-                dry_wet_process(&inputSig, out++, &dryWet);
+                dry_wet_process(&inputSig, out++, &mix);
                 
                 i++;
             }
             break;
     }
-    
 }
+
 
 /**
  * @related lfs_dist_dsp_perform

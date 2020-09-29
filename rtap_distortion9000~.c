@@ -86,30 +86,29 @@ void rtap_distortion9000_tilde_free(rtap_distortion9000_tilde *x)
  * @param f Sets the initial gain value. <br>
  * For more information please refer to the <a href = "https://github.com/pure-data/externals-howto" > Pure Data Docs </a> <br>
  */
-void *rtap_distortion9000_tilde_new(t_floatarg dryWet, t_floatarg distortionMod, t_floatarg saturation)
+void *rtap_distortion9000_tilde_new(t_floatarg mix, t_floatarg distortionMod, t_floatarg saturation)
 {
     rtap_distortion9000_tilde *x = (rtap_distortion9000_tilde *)pd_new(rtap_distortion9000_tilde_class);
     
     //The main inlet is created automatically
     x->x_out = outlet_new(&x->x_obj, &s_signal);
     x->dist_dsp = lfs_dist_dsp_new();
-    x->dist_dsp->dryWet = dryWet;
+    x->dist_dsp->mix = mix;
     x->dist_dsp->distortionMod = distortionMod;
     x->dist_dsp->saturation = saturation;
-
     return (void *)x;
 }
 
 /**
- * @related rtap_distortion9000_tilde_setdryWet
- * @brief Sets the drywet adjustment parameter. <br>
+ * @related rtap_distortion9000_tilde_setMix
+ * @brief Sets the mix adjustment parameter. <br>
  * @param x A pointer the lfs_dist_dsp_tilde object <br>
  * @param level Sets the level parameter <br>
  * For more information please refer to the <a href = "https://github.com/pure-data/externals-howto" > Pure Data Docs </a> <br>
  */
-void rtap_distortion9000_tilde_setdryWet(rtap_distortion9000_tilde *x, float dryWet)
+void rtap_distortion9000_tilde_setMix(rtap_distortion9000_tilde *x, float mix)
 {
-	lfs_dist_dsp_setDryWet(x->dist_dsp, dryWet);
+	lfs_dist_dsp_setMix(x->dist_dsp, mix);
 }
 
 /**
@@ -134,13 +133,38 @@ void rtap_distortion9000_tilde_setSaturation(rtap_distortion9000_tilde *x, float
     lfs_dist_dsp_setSaturation(x->dist_dsp, saturation);
 }
 
-void rtap_distortion9000_tilde_integrationTest(rtap_distortion9000_tilde *x)
+/**
+ * @related rtap_distortion9000_tilde_setFrequency
+ * @brief Sets the frequency parameter of the bandpass filter. <br>
+ * @param x A pointer the lfs_dist_dsp_tilde object <br>
+ * @param frequency Sets the frequency of the bandpass filter <br>
+ */
+void rtap_distortion9000_tilde_setFrequency(rtap_distortion9000_tilde *x, float frequency)
 {
-    lfs_dist_dsp_test *test = lfs_dist_dsp_test_new(x->dist_dsp, 32, 64);
-    lfs_dist_dsp_test_integration(test);
-    lfs_dist_dsp_test_free(test);
+    lfs_dist_dsp_setFrequency(x->dist_dsp, frequency);
 }
 
+/**
+ * @related rtap_distortion9000_tilde_setQuality
+ * @brief Sets the quality parameter of the bandpass filter. <br>
+ * @param x A pointer the lfs_dist_dsp_tilde object <br>
+ * @param quality Sets the quality of the bandpass filter <br>
+ */
+void rtap_distortion9000_tilde_setQuality(rtap_distortion9000_tilde *x, float quality)
+{
+    lfs_dist_dsp_setQuality(x->dist_dsp, quality);
+}
+
+/**
+ * @related rtap_distortion9000_tilde_setGain
+ * @brief Sets the quality parameter of the bandpass filter. <br>
+ * @param x A pointer the lfs_dist_dsp_tilde object <br>
+ * @param quality Sets the quality of the bandpass filter <br>
+ */
+void rtap_distortion9000_tilde_setGain(rtap_distortion9000_tilde *x, float gain)
+{
+    lfs_dist_dsp_setGain(x->dist_dsp, gain);
+}
 
 /**
  * @related rtap_distortion9000_tilde_setup
@@ -152,9 +176,11 @@ void rtap_distortion9000_tilde_setup(void)
     rtap_distortion9000_tilde_class = class_new(gensym("rtap_distortion9000~"), (t_newmethod)rtap_distortion9000_tilde_new, (t_method)rtap_distortion9000_tilde_free, sizeof(rtap_distortion9000_tilde), CLASS_DEFAULT, A_DEFFLOAT, A_DEFFLOAT, A_DEFFLOAT, A_DEFFLOAT, 0);
     
     class_addmethod(rtap_distortion9000_tilde_class, (t_method)rtap_distortion9000_tilde_dsp, gensym("dsp"), 0);
-    class_addmethod(rtap_distortion9000_tilde_class, (t_method)rtap_distortion9000_tilde_setdryWet, gensym("drywet"), A_DEFFLOAT, 0);
+    class_addmethod(rtap_distortion9000_tilde_class, (t_method)rtap_distortion9000_tilde_setMix, gensym("mix"), A_DEFFLOAT, 0);
     class_addmethod(rtap_distortion9000_tilde_class, (t_method)rtap_distortion9000_tilde_setdistortionMod, gensym("distortionMod"), A_DEFFLOAT, 0);
     class_addmethod(rtap_distortion9000_tilde_class, (t_method)rtap_distortion9000_tilde_setSaturation, gensym("saturation"), A_DEFFLOAT, 0);
-    class_addmethod(rtap_distortion9000_tilde_class, (t_method)rtap_distortion9000_tilde_integrationTest, gensym("integrationtest"), 0);
+    class_addmethod(rtap_distortion9000_tilde_class, (t_method)rtap_distortion9000_tilde_setFrequency, gensym("frequency"), A_DEFFLOAT, 0);
+    class_addmethod(rtap_distortion9000_tilde_class, (t_method)rtap_distortion9000_tilde_setQuality, gensym("quality"), A_DEFFLOAT, 0);
+    class_addmethod(rtap_distortion9000_tilde_class, (t_method)rtap_distortion9000_tilde_setGain, gensym("gain"), A_DEFFLOAT, 0);
     CLASS_MAINSIGNALIN(rtap_distortion9000_tilde_class, rtap_distortion9000_tilde, f);
 }

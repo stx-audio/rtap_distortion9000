@@ -21,16 +21,18 @@ typedef float lfs_OUTPUTVECTOR;
 /**
  * @struct lfs_dist_dsp
  * @brief A structure for a multiband distortion object <br>
- * @var dryWet parameter for adjusting amount of distortion for the incoming signal<br>
+ * @var mix parameter for adjusting amount of distortion for the incoming signal<br>
  * @var distortionMod parameter for choosing the desired distortion mod <br>
  * @var saturation parameter for setting more saturation for saturation mods 2 (SIG), 4 (TANH), 5 (ATAN) and 6 (FEXP1)<br>
  */
 typedef struct lfs_dist_dsp
 {
-    float dryWet; /**< parameter for adjusting amount of distortion for the incoming signal */
+    float mix; /**< parameter for adjusting amount of distortion for the incoming signal */
     float distortionMod; /**< parameter for choosing the desired distortion mod */
     float saturation; /**<parameter for setting more saturation for some saturation mods 2 (SIG), 4 (TANH), 5 (ATAN) and 6 (FEXP1)*/
-    int integrationstest;
+    float frequency;
+    float quality;
+    float gain;
 } lfs_dist_dsp;
 
 /**
@@ -51,12 +53,12 @@ lfs_dist_dsp *lfs_dist_dsp_new();
 void lfs_dist_dsp_free(lfs_dist_dsp *x);
 
 /**
- * @related lfs_dist_dsp_setdryWet
+ * @related lfs_dist_dsp_setMix
  * @brief Sets the dry wet value of the pd project. <br>
  * @param x A pointer to the lfs_dist_dsp object <br>
- * @param dryWet the dryWet value 0-1<br>
+ * @param mix the mix value 0-1<br>
  */
-void lfs_dist_dsp_setDryWet(lfs_dist_dsp *x, float dryWet);
+void lfs_dist_dsp_setMix(lfs_dist_dsp *x, float mix);
 
 /**
  * @related lfs_dist_dsp_setdistortionMod
@@ -70,9 +72,33 @@ void lfs_dist_dsp_setDistortionMod(lfs_dist_dsp *x, float distortionMod);
  * @related lfs_dist_dsp_setSaturation
  * @brief Sets the saturation of the pure data project <br>
  * @param x A pointer to the lfs_dist_dsp object <br>
- * @param distortionMod sets the saturation 1-10 of the saturation for algo 2,4,5,6 <br>
+ * @param saturation sets the saturation 1-10 of the saturation for algo 2,4,5,6 <br>
  */
-void lfs_dist_dsp_setSaturation(lfs_dist_dsp *x, float distortionMod);
+void lfs_dist_dsp_setSaturation(lfs_dist_dsp *x, float saturation);
+
+/**
+ * @related lfs_dist_dsp_setFrequency
+ * @brief Sets the saturation of the pure data project <br>
+ * @param x A pointer to the lfs_dist_dsp object <br>
+ * @param frequency sets the frequency of the bandpass filter between 50 and 20000 Hz <br>
+ */
+void lfs_dist_dsp_setFrequency(lfs_dist_dsp *x, float frequency);
+
+/**
+ * @related lfs_dist_dsp_setQuality
+ * @brief Sets the saturation of the pure data project <br>
+ * @param x A pointer to the lfs_dist_dsp object <br>
+ * @param quality sets the quality of the algorithm between 0 and 16 <br>
+ */
+void lfs_dist_dsp_setQuality(lfs_dist_dsp *x, float quality);
+
+/**
+ * @related lfs_dist_dsp_setGain
+ * @brief Sets the saturation of the pure data project <br>
+ * @param x A pointer to the lfs_dist_dsp object <br>
+ * @param gain sets the filter mode of the algorithm (none, lp, bp) <br>
+ */
+void lfs_dist_dsp_setGain(lfs_dist_dsp *x, float gain);
 
 /**
  * @related sgn
@@ -87,9 +113,9 @@ float sgn(float input);
  * @brief Adds lfs_dist_dsp_perform to the signal chain. <br>
  * @param inSample A pointer to the input sample<br>
  * @param outSample A pointer to the output sample<br>
- * @param dryWet A pointer to the dry wet value as set in the pd patch<br>
+ * @param mix A pointer to the dry wet value as set in the pd patch<br>
  */
-void dry_wet_process(float* inSample, float* outSample, float* dryWet);
+void dry_wet_process(float* inSample, float* outSample, float* mix);
 
 /**
  * @related lfs_dist_process
