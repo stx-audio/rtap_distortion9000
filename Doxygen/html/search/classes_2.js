@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['stp_5fdist_5fdsp_31',['stp_dist_dsp',['../structstp__dist__dsp.html',1,'']]]
+  ['rtap_5fdistortion9000_5ftilde_446',['rtap_distortion9000_tilde',['../structrtap__distortion9000__tilde.html',1,'']]]
 ];

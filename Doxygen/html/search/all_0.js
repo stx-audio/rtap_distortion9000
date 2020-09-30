@@ -1,12 +1,5 @@
 var searchData=
 [
-  ['_5fatom_0',['_atom',['../struct__atom.html',1,'']]],
-  ['_5fgobj_1',['_gobj',['../struct__gobj.html',1,'']]],
-  ['_5fgpointer_2',['_gpointer',['../struct__gpointer.html',1,'']]],
-  ['_5fgstub_3',['_gstub',['../struct__gstub.html',1,'']]],
-  ['_5fresample_4',['_resample',['../struct__resample.html',1,'']]],
-  ['_5fscalar_5',['_scalar',['../struct__scalar.html',1,'']]],
-  ['_5fsignal_6',['_signal',['../struct__signal.html',1,'']]],
-  ['_5fsymbol_7',['_symbol',['../struct__symbol.html',1,'']]],
-  ['_5ftext_8',['_text',['../struct__text.html',1,'']]]
+  ['dist_5fdsp_0',['dist_dsp',['../structrtap__distortion9000__tilde.html#a35202a827b42f988b476902c0a16b865',1,'rtap_distortion9000_tilde']]],
+  ['distortionmod_1',['distortionMod',['../structlfs__dist__dsp.html#a2032d41c07717f0ec69bb7a29052c97d',1,'lfs_dist_dsp']]]
 ];

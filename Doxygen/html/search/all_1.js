@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['distortionmod_9',['distortionMod',['../structstp__dist__dsp.html#a1750250b8b7c9670b9b615e8d39756b4',1,'stp_dist_dsp']]],
-  ['drywet_10',['dryWet',['../structstp__dist__dsp.html#a5492008dbf17e9dd6538ce943b6a5030',1,'stp_dist_dsp']]]
+  ['econst_2',['econst',['../lfs__dist__dsp_8c.html#a261d072b1c1fd0c4624718a77fe06008',1,'lfs_dist_dsp.c']]]
 ];
