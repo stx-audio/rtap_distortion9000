@@ -1,4 +1,4 @@
-#N canvas 1414 -285 1587 860 12;
+#N canvas 716 245 1587 860 12;
 #X obj 485 592 dac~;
 #X floatatom 434 739 5 0 0 0 - - -;
 #N canvas 0 50 450 250 (subpatch) 0;
@@ -10,11 +10,11 @@
 #X coords 0 1 99 -1 400 200 1 0 0;
 #X restore 869 642 graph;
 #X obj 437 697 hsl 200 30 0 1 0 1 empty empty Mix 0 -10 1 15 -4034
--1 -1 19900 1;
+-1 -1 0 1;
 #X msg 301 519 distortionMod \$1;
 #X floatatom 353 400 5 0 0 0 - - -;
 #X obj 356 361 hsl 200 30 1 10 0 1 empty empty Saturation_(1-3-4) -2
--10 1 15 -4032 -1 -1 12200 1;
+-10 1 15 -4032 -1 -1 10200 1;
 #X obj 875 540 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
 1;
 #X obj 165 851 + 6;
@@ -22,15 +22,15 @@
 #X msg 353 422 saturation \$1;
 #X floatatom 352 265 10 0 0 0 - - -;
 #X obj 355 224 hsl 200 30 50 22000 1 0 empty empty Frequency 30 -10
-1 15 -159808 -1 -1 0 1;
+1 15 -159808 -1 -1 12700 1;
 #X obj 633 220 hsl 200 30 0.1 16 0 0 empty empty Quality -2 -10 1 15
--261234 -1 -1 0 1;
+-261234 -1 -1 4200 1;
 #X floatatom 632 259 5 0 0 0 - - -;
 #X msg 633 283 quality \$1;
 #X obj 484 569 rtap_distortion9000~;
 #X msg 432 761 mix \$1;
 #X obj 163 249 vradio 40 1 0 6 empty empty SOFT_CLIP_WAVESHAPER -40
--10 1 15 -257985 -159808 -1 3;
+-10 1 15 -257985 -159808 -1 5;
 #X obj 163 524 vradio 40 1 0 8 empty empty EXOTIC_DISTORTION -40 -10
 1 15 -66577 -258113 -1 0;
 #X text 131 577 ATSR;
@@ -74,7 +74,7 @@
 #X obj 432 784 s mix;
 #X obj 595 520 r mix;
 #X obj 634 358 hsl 200 30 0 40 0 0 empty empty Gain -2 -10 1 15 -260097
--1 -1 0 1;
+-1 -1 19900 1;
 #X floatatom 633 396 5 0 0 0 - - -;
 #X msg 634 420 gain \$1;
 #X obj 634 448 s g;
@@ -83,12 +83,14 @@
 #X text 209 693 just for low Qs;
 #X text 209 657 just for low Qs;
 #X text 357 861 If you are happy check out the multiband patch!;
-#N canvas 0 23 450 300 known_issues 0;
+#N canvas 861 459 450 300 known_issues 1;
 #X text 31 50 - Audio can turn off when there is a song change or an
 unusual signal \, in case just restart the patch;
 #X text 35 25 KNOWN ISSUES;
 #X text 30 93 - Levels are still of different between the algorithms
 ;
+#X text 35 124 - Error gatom: no method for 'distortionMod" is throwed
+\, but function is still working;
 #X restore 1151 877 pd known_issues;
 #X text 226 63 WELCOME TO POWER DISTORTION!;
 #X text 993 190 3 Load a 44.1 kHz WAVE File at the openpanel switch
@@ -178,7 +180,7 @@ test signal, f 64;
 #X obj 1010 350 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1
 0 1;
 #X obj 991 343 hradio 8 1 0 1 empty empty Mic_In 0 -8 1 15 -262144
--1 -1 6;
+-1 -1 0;
 #X text 1177 289 test signals;
 #N canvas 0 23 358 309 waveform 0;
 #X obj 132 173 tabwrite~ waveform;
@@ -189,7 +191,7 @@ test signal, f 64;
 #X connect 2 0 0 0;
 #X connect 3 0 1 0;
 #X restore 875 564 pd waveform;
-#X obj 22 52 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1 1
+#X obj 22 52 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0 1
 ;
 #X msg 22 72 \; pd dsp \$1;
 #X text 67 49 <-- DSP on/off;

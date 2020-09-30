@@ -1,49 +1,40 @@
-#N canvas 1290 -352 1910 967 12;
+#N canvas 658 322 1910 967 12;
 #X floatatom 76 904 5 0 0 0 - - -;
 #N canvas 0 50 450 250 (subpatch) 0;
 #X array Waveform 100 float 5;
-#A 0 0 0 0 -0.0600095 -0.0588984 -0.0577873 -0.0566762 -0.0555651 -0.0544541
--0.053343 -0.0522319 -0.0511208 -0.0500097 -0.0500097 -0.0500097 -0.0500097
--0.0500097 -0.0500097 -0.0500097 -0.0500097 -0.0500097 -0.0500097 -0.0500097
--0.0500097 -0.0525097 -0.0550096 -0.0575095 -0.0600095 -0.0625094 -0.0650094
-0.869998 1.04 1.16 1.54001 1.63002 1.55801 1.50601 1.45401 1.40201
-1.35001 1.27572 1.23144 1.18715 1.14286 1.09857 1.05429 1.01 0.95 -0.120008
--0.120008 -0.120008 -0.120008 -0.120008 -0.120008 -0.120008 -0.120008
--0.120008 -0.120008 -0.120008 -0.120008 -0.120008 -0.120008 -0.120008
--0.120008 -0.120008 -0.120008 -0.120008 -0.120008 -0.120008 -0.120008
--0.117508 -0.115008 0.91 -0.110008 -0.110008 -0.110008 -0.110008 -0.110008
--0.106675 -0.103342 -0.100008 -0.0966752 -0.093342 -0.0900087 -0.99
--0.0833422 -0.080009 -0.0725092 -0.0650094 -0.0575095 -0.0500097 -0.0450099
--0.04001 -0.0300102 0 0 0.95 0.95 0.95 0;
-#X coords 0 1 99 -1 400 200 1 0 0;
+#A 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0;
+#X coords 0 3 99 -3 400 200 1 0 0;
 #X restore 1037 499 graph;
 #X obj 79 878 hsl 150 18 0 1 0 1 empty empty Mix_Band_1 0 -10 1 15
--4034 -1 -1 6100 1;
-#X msg 547 363 distortionMod \$1;
+-4034 -1 -1 13000 1;
+#X msg 546 373 distortionMod \$1;
 #X obj 235 245 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
 #X msg 263 245 start;
 #X msg 314 245 stop;
 #X floatatom 77 786 5 0 0 0 - - -;
 #X obj 79 765 hsl 150 18 1 10 0 1 empty empty Saturation_Band_1 -2
--10 1 15 -4032 -1 -1 7400 1;
+-10 1 15 -4032 -1 -1 11000 1;
 #X obj 1461 558 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1
-0 1;
+1 1;
 #X obj 1246 390 + 6;
 #X floatatom 547 344 3 9 14 0 - - -;
 #X msg 78 802 saturation \$1;
 #X floatatom 81 471 10 0 0 0 - - -;
-#X obj 85 448 hsl 150 18 50 22000 1 0 empty empty Frequency_Band_1
-2 -10 1 15 -66577 -262144 -1 0 1;
+#X obj 83 446 hsl 150 18 50 22000 1 0 empty empty Frequency_Band_1
+2 -10 1 15 -159808 -1 -1 3300 1;
 #X obj 84 545 hsl 150 18 0.1 16 0 0 empty empty Q_Band_1 -2 -10 1 15
--261234 -1 -1 0 1;
+-261234 -1 -1 6700 1;
 #X floatatom 80 565 5 0 0 0 - - -;
 #X msg 80 586 quality \$1;
 #X msg 76 926 mix \$1;
 #X obj 547 153 vradio 30 1 1 6 empty empty SOFT_CLIP_WAVESHAPER -40
--10 1 15 -257985 -159808 -1 3;
+-10 1 15 -257985 -159808 -1 0;
 #X obj 1246 141 vradio 30 1 0 8 empty empty EXOTIC_DISTORTION -40 -10
-1 15 -66577 -258113 -1 4;
+1 15 -66577 -258113 -1 0;
 #X text 1207 180 ATSR;
 #X text 1200 148 FEXP2;
 #X text 502 308 FEXP1;
@@ -66,7 +57,7 @@
 #X msg 82 492 frequency \$1;
 #X obj 142 363 s~ sig;
 #X obj 85 645 hsl 150 18 0 40 0 0 empty empty Gain_Band_1 -2 -10 1
-15 -260097 -1 -1 0 1;
+15 -260097 -1 -1 700 1;
 #X floatatom 82 669 5 0 0 0 - - -;
 #X msg 82 693 gain \$1;
 #N canvas 2 93 450 300 known_issues 0;
@@ -78,7 +69,7 @@ unusual signal \, in case just restart the patch;
 #X restore 12 80 pd known_issues;
 #X floatatom 244 471 10 0 0 0 - - -;
 #X obj 248 448 hsl 150 18 50 22000 1 0 empty empty Frequency_Band_2
-2 -10 1 15 -159808 -1 -1 0 1;
+2 -10 1 15 -159808 -1 -1 9200 1;
 #X msg 245 492 frequency \$1;
 #X obj 172 492 s f0;
 #X obj 175 803 s sat0;
@@ -87,41 +78,41 @@ unusual signal \, in case just restart the patch;
 #X obj 123 926 s mix0;
 #X obj 1272 390 s mod0;
 #X obj 596 344 r mod0;
-#X obj 547 383 s mod0;
+#X obj 546 393 s mod0;
 #X obj 335 491 s f1;
 #X floatatom 406 472 10 0 0 0 - - -;
 #X obj 410 449 hsl 150 18 50 22000 1 0 empty empty Frequency_Band_3
-2 -10 1 15 -159808 -1 -1 0 1;
+2 -10 1 15 -159808 -1 -1 8000 1;
 #X msg 407 493 frequency \$1;
 #X floatatom 566 472 10 0 0 0 - - -;
 #X obj 570 449 hsl 150 18 50 22000 1 0 empty empty Frequency_Band_4
-2 -10 1 15 -159808 -1 -1 0 1;
+2 -10 1 15 -159808 -1 -1 11200 1;
 #X msg 567 493 frequency \$1;
 #X floatatom 724 472 10 0 0 0 - - -;
 #X obj 728 449 hsl 150 18 50 22000 1 0 empty empty Frequency_Band_5
-2 -10 1 15 -159808 -1 -1 0 1;
+2 -10 1 15 -159808 -1 -1 10700 1;
 #X msg 725 493 frequency \$1;
 #X obj 671 154 vradio 30 1 0 6 empty empty empty -40 -10 1 15 -257985
--159808 -1 1;
+-159808 -1 0;
 #X obj 796 151 vradio 30 1 0 6 empty empty empty -40 -10 1 15 -257985
--159808 -1 1;
+-159808 -1 0;
 #X obj 924 148 vradio 30 1 0 6 empty empty empty -40 -10 1 15 -257985
--159808 -1 5;
+-159808 -1 0;
 #X obj 1054 147 vradio 30 1 0 6 empty empty empty -40 -10 1 15 -257985
--159808 -1 1;
+-159808 -1 0;
 #X obj 1376 389 + 6;
 #X obj 1376 140 vradio 30 1 0 8 empty empty empty -40 -10 1 15 -66577
--258113 -1 3;
+-258113 -1 0;
 #X obj 1402 389 s mod1;
 #X obj 1502 389 + 6;
 #X obj 1502 140 vradio 30 1 0 8 empty empty empty -40 -10 1 15 -66577
--258113 -1 6;
+-258113 -1 0;
 #X obj 1628 388 + 6;
 #X obj 1628 139 vradio 30 1 0 8 empty empty empty -40 -10 1 15 -66577
--258113 -1 6;
+-258113 -1 0;
 #X obj 1752 387 + 6;
 #X obj 1752 138 vradio 30 1 0 8 empty empty empty -40 -10 1 15 -66577
--258113 -1 6;
+-258113 -1 0;
 #X obj 497 492 s f2;
 #X obj 658 492 s f3;
 #X obj 815 492 s f4;
@@ -130,19 +121,19 @@ unusual signal \, in case just restart the patch;
 #X obj 1778 387 s mod4;
 #X floatatom 241 904 5 0 0 0 - - -;
 #X obj 244 878 hsl 150 18 0 1 0 1 empty empty Mix_Band_2 0 -10 1 15
--4034 -1 -1 4000 1;
+-4034 -1 -1 7900 1;
 #X msg 241 926 mix \$1;
 #X floatatom 403 904 5 0 0 0 - - -;
 #X obj 406 878 hsl 150 18 0 1 0 1 empty empty Mix_Band_3 0 -10 1 15
--4034 -1 -1 5700 1;
+-4034 -1 -1 6900 1;
 #X msg 403 926 mix \$1;
 #X floatatom 563 904 5 0 0 0 - - -;
 #X obj 566 878 hsl 150 18 0 1 0 1 empty empty Mix_Band_4 0 -10 1 15
--4034 -1 -1 14000 1;
+-4034 -1 -1 2700 1;
 #X msg 563 926 mix \$1;
 #X floatatom 722 904 5 0 0 0 - - -;
 #X obj 725 878 hsl 150 18 0 1 0 1 empty empty Mix_Band_5 0 -10 1 15
--4034 -1 -1 14900 1;
+-4034 -1 -1 0 1;
 #X msg 722 926 mix \$1;
 #X text 50 858 Wet;
 #X text 205 858 Dry;
@@ -160,7 +151,7 @@ unusual signal \, in case just restart the patch;
 #X msg 403 800 saturation \$1;
 #X floatatom 564 786 5 0 0 0 - - -;
 #X obj 566 765 hsl 150 18 1 10 0 1 empty empty Saturation_Band_4 -2
--10 1 15 -4032 -1 -1 7700 1;
+-10 1 15 -4032 -1 -1 10300 1;
 #X msg 564 808 saturation \$1;
 #X floatatom 724 786 5 0 0 0 - - -;
 #X obj 726 766 hsl 150 18 1 10 0 1 empty empty Saturation_Band_5 -2
@@ -171,66 +162,61 @@ unusual signal \, in case just restart the patch;
 #X obj 659 807 s sat3;
 #X obj 819 808 s sat4;
 #X obj 245 545 hsl 150 18 0.1 16 0 0 empty empty Q_Band_2 -2 -10 1
-15 -261234 -1 -1 0 1;
+15 -261234 -1 -1 5300 1;
 #X floatatom 241 565 5 0 0 0 - - -;
 #X msg 241 586 quality \$1;
 #X obj 320 586 s q1;
 #X obj 405 545 hsl 150 18 0.1 16 0 0 empty empty Q_Band_3 -2 -10 1
-15 -261234 -1 -1 0 1;
+15 -261234 -1 -1 2600 1;
 #X floatatom 401 565 5 0 0 0 - - -;
 #X msg 401 586 quality \$1;
 #X obj 562 545 hsl 150 18 0.1 16 0 0 empty empty Q_Band_4 -2 -10 1
-15 -261234 -1 -1 0 1;
+15 -261234 -1 -1 3100 1;
 #X floatatom 558 565 5 0 0 0 - - -;
 #X msg 558 586 quality \$1;
 #X obj 725 544 hsl 150 18 0.1 16 0 0 empty empty Q_Band_5 -2 -10 1
-15 -261234 -1 -1 0 1;
+15 -261234 -1 -1 2300 1;
 #X floatatom 721 564 5 0 0 0 - - -;
 #X msg 721 585 quality \$1;
 #X obj 480 586 s q2;
 #X obj 637 586 s q3;
 #X obj 800 585 s q4;
 #X obj 246 644 hsl 150 18 0 40 0 0 empty empty Gain_Band_2 -2 -10 1
-15 -260097 -1 -1 0 1;
+15 -260097 -1 -1 900 1;
 #X floatatom 243 668 5 0 0 0 - - -;
 #X msg 243 692 gain \$1;
 #X obj 405 643 hsl 150 18 0 40 0 0 empty empty Gain_Band_3 -2 -10 1
-15 -260097 -1 -1 0 1;
+15 -260097 -1 -1 1000 1;
 #X floatatom 402 667 5 0 0 0 - - -;
 #X msg 402 691 gain \$1;
 #X obj 563 642 hsl 150 18 0 40 0 0 empty empty Gain_Band_4 -2 -10 1
-15 -260097 -1 -1 0 1;
+15 -260097 -1 -1 1400 1;
 #X floatatom 560 666 5 0 0 0 - - -;
 #X msg 560 690 gain \$1;
 #X obj 721 642 hsl 150 18 0 40 0 0 empty empty Gain_Band_5 -2 -10 1
-15 -260097 -1 -1 0 1;
+15 -260097 -1 -1 3100 1;
 #X floatatom 718 666 5 0 0 0 - - -;
 #X msg 718 690 gain \$1;
 #X obj 301 693 s g1;
 #X obj 459 691 s g2;
 #X obj 617 690 s g3;
 #X obj 775 690 s g4;
-#X obj 17 7 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0 1
+#X obj 17 7 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1 1
 ;
 #X msg 17 27 \; pd dsp \$1;
 #X obj 759 65 hradio 8 1 0 1 empty empty Multiband_Power_Distortion
 0 -8 0 27 -262144 -1 -1 6;
-#X obj 569 344 + 9;
 #X msg 671 361 distortionMod \$1;
 #X floatatom 671 342 3 9 14 0 - - -;
-#X obj 693 342 + 9;
 #X msg 797 360 distortionMod \$1;
 #X floatatom 797 341 3 9 14 0 - - -;
-#X obj 819 341 + 9;
 #X msg 924 357 distortionMod \$1;
 #X floatatom 924 338 3 9 14 0 - - -;
-#X obj 946 338 + 9;
 #X msg 1054 354 distortionMod \$1;
 #X floatatom 1054 335 3 9 14 0 - - -;
-#X obj 1076 335 + 9;
-#X obj 39 243 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
+#X obj 39 243 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
 1;
-#N canvas 1973 -220 450 300 sine 0;
+#N canvas 1973 23 450 300 sine 0;
 #X obj 84 75 osc~ 440;
 #X obj 105 165 *~;
 #X obj 106 206 outlet~;
@@ -259,7 +245,7 @@ unusual signal \, in case just restart the patch;
 #X obj 141 245 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
 1;
 #X obj 371 234 vsl 20 100 0 1 0 0 empty empty Main_Volume_(0-1) 0 -9
-1 16 -4034 -1 -1 400 1;
+1 16 -4034 -1 -1 6400 1;
 #X obj 372 343 s vol;
 #X floatatom 370 365 5 0 0 0 - - -;
 #N canvas 0 23 450 300 browse 0;
@@ -280,7 +266,7 @@ unusual signal \, in case just restart the patch;
 #X obj 40 231 hradio 8 1 0 1 empty empty Sine_440Hz 0 -8 1 15 -262144
 -1 -1 6;
 #X obj 88 152 hradio 8 1 0 1 empty empty Choose_input_signal 0 -8 1
-20 -262144 -1 -1 6;
+20 -262144 -1 -1 0;
 #X obj 141 232 hradio 8 1 0 1 empty empty Saw_440Hz 0 -8 1 15 -262144
 -1 -1 6;
 #X obj 235 232 hradio 8 1 0 1 empty empty Browse_sample 0 -8 1 15 -262144
@@ -294,7 +280,7 @@ unusual signal \, in case just restart the patch;
 #X obj 797 380 s mod2;
 #X obj 926 378 s mod3;
 #X obj 1054 374 s mod4;
-#N canvas 0 23 989 334 distortion 0;
+#N canvas 0 23 989 334 distortion 1;
 #X obj 443 258 dac~;
 #X obj 38 125 rtap_distortion9000~;
 #X obj 68 95 r~ sig;
@@ -342,28 +328,28 @@ unusual signal \, in case just restart the patch;
 #X obj 474 99 r fmode2;
 #X obj 649 97 r fmode3;
 #X obj 819 94 r fmode4;
-#X obj 416 230 *~;
+#X obj 553 260 r vol;
 #X obj 481 230 *~;
-#X obj 517 230 r vol;
-#X connect 1 0 47 0;
-#X connect 1 0 48 0;
+#X obj 416 228 *~;
 #X connect 1 0 3 0;
+#X connect 1 0 48 0;
+#X connect 1 0 49 0;
 #X connect 2 0 1 0;
-#X connect 4 0 47 0;
-#X connect 4 0 48 0;
 #X connect 4 0 3 0;
+#X connect 4 0 48 0;
+#X connect 4 0 49 0;
 #X connect 5 0 4 0;
-#X connect 6 0 47 0;
-#X connect 6 0 48 0;
 #X connect 6 0 3 0;
+#X connect 6 0 48 0;
+#X connect 6 0 49 0;
 #X connect 7 0 6 0;
-#X connect 8 0 47 0;
-#X connect 8 0 48 0;
 #X connect 8 0 3 0;
+#X connect 8 0 48 0;
+#X connect 8 0 49 0;
 #X connect 9 0 8 0;
-#X connect 10 0 47 0;
-#X connect 10 0 48 0;
 #X connect 10 0 3 0;
+#X connect 10 0 48 0;
+#X connect 10 0 49 0;
 #X connect 11 0 10 0;
 #X connect 12 0 4 0;
 #X connect 13 0 1 0;
@@ -400,31 +386,31 @@ unusual signal \, in case just restart the patch;
 #X connect 44 0 6 0;
 #X connect 45 0 8 0;
 #X connect 46 0 10 0;
-#X connect 47 0 0 0;
+#X connect 47 0 48 1;
+#X connect 47 0 49 1;
 #X connect 48 0 0 1;
-#X connect 49 0 47 1;
-#X connect 49 0 48 1;
+#X connect 49 0 0 0;
 #X restore 1247 50 pd distortion process;
-#N canvas 1295 -352 1869 1013 waveform 0;
-#X obj 109 196 tabwrite~ waveform;
+#N canvas 1139 23 1869 1013 waveform 0;
 #X obj 111 157 metro 100;
 #X obj 192 157 r~ spec;
 #X obj 108 117 inlet schalter;
-#X connect 1 0 0 0;
+#X obj 108 196 tabwrite~ Waveform;
+#X connect 0 0 3 0;
+#X connect 1 0 3 0;
 #X connect 2 0 0 0;
-#X connect 3 0 1 0;
 #X restore 1461 582 pd waveform;
 #X connect 0 0 18 0;
 #X connect 2 0 0 0;
 #X connect 3 0 56 0;
-#X connect 4 0 175 0;
-#X connect 5 0 175 1;
-#X connect 6 0 175 2;
+#X connect 4 0 170 0;
+#X connect 5 0 170 1;
+#X connect 6 0 170 2;
 #X connect 7 0 12 0;
 #X connect 8 0 7 0;
-#X connect 9 0 190 0;
+#X connect 9 0 185 0;
 #X connect 10 0 54 0;
-#X connect 11 0 155 0;
+#X connect 11 0 3 0;
 #X connect 12 0 50 0;
 #X connect 13 0 40 0;
 #X connect 14 0 13 0;
@@ -451,10 +437,10 @@ unusual signal \, in case just restart the patch;
 #X connect 64 0 66 0;
 #X connect 65 0 64 0;
 #X connect 66 0 82 0;
-#X connect 67 0 157 0;
-#X connect 68 0 160 0;
-#X connect 69 0 163 0;
-#X connect 70 0 166 0;
+#X connect 67 0 156 0;
+#X connect 68 0 158 0;
+#X connect 69 0 160 0;
+#X connect 70 0 162 0;
 #X connect 71 0 73 0;
 #X connect 72 0 71 0;
 #X connect 74 0 83 0;
@@ -512,27 +498,22 @@ unusual signal \, in case just restart the patch;
 #X connect 146 0 147 0;
 #X connect 147 0 151 0;
 #X connect 152 0 153 0;
-#X connect 155 0 3 0;
-#X connect 156 0 185 0;
-#X connect 157 0 158 0;
-#X connect 158 0 156 0;
-#X connect 159 0 186 0;
-#X connect 160 0 161 0;
-#X connect 161 0 159 0;
-#X connect 162 0 187 0;
+#X connect 155 0 180 0;
+#X connect 156 0 155 0;
+#X connect 157 0 181 0;
+#X connect 158 0 157 0;
+#X connect 159 0 182 0;
+#X connect 160 0 159 0;
+#X connect 161 0 183 0;
+#X connect 162 0 161 0;
 #X connect 163 0 164 0;
-#X connect 164 0 162 0;
-#X connect 165 0 188 0;
-#X connect 166 0 167 0;
-#X connect 167 0 165 0;
-#X connect 168 0 169 0;
-#X connect 169 0 41 0;
+#X connect 164 0 41 0;
+#X connect 165 0 41 0;
+#X connect 166 0 165 0;
+#X connect 167 0 168 0;
+#X connect 167 0 169 0;
 #X connect 170 0 41 0;
-#X connect 171 0 170 0;
-#X connect 172 0 173 0;
-#X connect 172 0 174 0;
-#X connect 175 0 41 0;
-#X connect 181 0 157 0;
-#X connect 182 0 160 0;
-#X connect 183 0 163 0;
-#X connect 184 0 166 0;
+#X connect 176 0 156 0;
+#X connect 177 0 158 0;
+#X connect 178 0 160 0;
+#X connect 179 0 162 0;
