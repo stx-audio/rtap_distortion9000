@@ -1,4 +1,4 @@
-#N canvas 716 245 1587 860 12;
+#N canvas 308 274 1680 986 12;
 #X obj 485 592 dac~;
 #X floatatom 434 739 5 0 0 0 - - -;
 #N canvas 0 50 450 250 (subpatch) 0;
@@ -15,16 +15,16 @@
 #X floatatom 353 400 5 0 0 0 - - -;
 #X obj 356 361 hsl 200 30 1 10 0 1 empty empty Saturation_(1-3-4) -2
 -10 1 15 -4032 -1 -1 10200 1;
-#X obj 875 540 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
+#X obj 875 540 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
 1;
 #X obj 165 851 + 6;
 #X floatatom 302 498 3 0 0 0 - - -;
 #X msg 353 422 saturation \$1;
 #X floatatom 352 265 10 0 0 0 - - -;
 #X obj 355 224 hsl 200 30 50 22000 1 0 empty empty Frequency 30 -10
-1 15 -159808 -1 -1 12700 1;
+1 15 -159808 -1 -1 0 1;
 #X obj 633 220 hsl 200 30 0.1 16 0 0 empty empty Quality -2 -10 1 15
--261234 -1 -1 4200 1;
+-261234 -1 -1 0 1;
 #X floatatom 632 259 5 0 0 0 - - -;
 #X msg 633 283 quality \$1;
 #X obj 484 569 rtap_distortion9000~;
@@ -48,7 +48,6 @@
 #X text 125 815 ASQRT;
 #X text 131 259 ARRY;
 #X text 874 515 Here you can activate the waveform, f 37;
-#X text 1332 290 Here you can load a WAVE File;
 #X text 643 703 ORIGINAL;
 #X text 368 703 DISTORTED;
 #X text 204 301 (SAT);
@@ -74,7 +73,7 @@
 #X obj 432 784 s mix;
 #X obj 595 520 r mix;
 #X obj 634 358 hsl 200 30 0 40 0 0 empty empty Gain -2 -10 1 15 -260097
--1 -1 19900 1;
+-1 -1 0 1;
 #X floatatom 633 396 5 0 0 0 - - -;
 #X msg 634 420 gain \$1;
 #X obj 634 448 s g;
@@ -83,15 +82,6 @@
 #X text 209 693 just for low Qs;
 #X text 209 657 just for low Qs;
 #X text 357 861 If you are happy check out the multiband patch!;
-#N canvas 861 459 450 300 known_issues 1;
-#X text 31 50 - Audio can turn off when there is a song change or an
-unusual signal \, in case just restart the patch;
-#X text 35 25 KNOWN ISSUES;
-#X text 30 93 - Levels are still of different between the algorithms
-;
-#X text 35 124 - Error gatom: no method for 'distortionMod" is throwed
-\, but function is still working;
-#X restore 1151 877 pd known_issues;
 #X text 226 63 WELCOME TO POWER DISTORTION!;
 #X text 993 190 3 Load a 44.1 kHz WAVE File at the openpanel switch
 ;
@@ -164,7 +154,7 @@ test signal, f 64;
 -1 -1 6;
 #X obj 1388 338 hradio 8 1 0 1 empty empty Browse_sample 0 -8 1 15
 -262144 -1 -1 6;
-#N canvas 1973 -220 1194 737 mic 0;
+#N canvas 1973 64 1194 737 mic 0;
 #X obj 105 165 *~;
 #X obj 106 206 outlet~;
 #X floatatom 188 157 5 0 0 0 - - -;
@@ -197,48 +187,115 @@ test signal, f 64;
 #X text 67 49 <-- DSP on/off;
 #X text 993 96 Click on a toggle to choose the desired audio source
 ;
+#N canvas 368 301 1206 535 algorithms_help 0;
+#X text 237 77 ARRY;
+#X text 14 26 SOFT CLIP WAVESHAPER ALGORITHMS;
+#X text 216 52 Acronym;
+#X text 149 53 Name;
+#X text 136 77 Arraya;
+#X text 330 74 y = 3x/2 *(1-x²/3);
+#X text 130 102 Sigmoid;
+#X text 243 100 SIG;
+#X text 330 96 y = 2*(1/(1+e^(-kx))-1;
+#X text 123 128 Sigmoid2;
+#X text 237 124 SIG2;
+#X text 675 93 you can adjust Saturation for this algorithm!;
+#X text 53 150 Hyperbolic Tangent;
+#X text 109 174 Arctangent;
+#X text 53 197 Fuzz Exponential 1;
+#X text 237 148 TANH;
+#X text 237 172 ATAN;
+#X text 330 144 y = tanh(kx)/tanh(k);
+#X text 330 168 y = arctan(kx)/arctan(k);
+#X text 676 143 you can adjust Saturation for this algorithm!;
+#X text 677 168 you can adjust Saturation for this algorithm!;
+#X text 330 193 y = sgn(x)*((1-e^(-|kx|))/((1-e^(-k));
+#X text 36 254 EXOTIC DISTORTION ALGORITHMS;
+#X text 53 285 Fuzz Exponential 2;
+#X text 230 284 FEXP2;
+#X text 230 195 FEXP1;
+#X text 326 284 y = sgn(-x)*((1-e^(-|x|))/(e-1);
+#X text 676 40 sgn(x) = -1 for x < 0 and sgn(x) = +1 for x>=0;
+#X text 25 313 Arctangent Square Root;
+#X text 237 311 ATSR;
+#X text 325 312 y = 2.5*tan^(-1)*(0.9x)+2.5*sqrt((1-(0.9x)²)-2.5;
+#X text 102 341 Square Sign;
+#X text 244 339 SQS;
+#X text 326 339 y = x²*sgn(x);
+#X text 330 120 y = ((e^x-1)*(e+1))/((e^x+1)*(e-1));
+#X text 151 369 Cube;
+#X text 237 368 CUBE;
+#X text 326 366 y = x³;
+#X text 678 367 recommended only with low Q values;
+#X text 53 396 HalfWave Rectifier;
+#X text 39 424 Full-Wave Recitifier;
+#X text 109 450 Square Law;
+#X text 40 476 Absolute Square Root;
+#X text 244 396 HWR;
+#X text 244 422 FWR;
+#X text 244 449 SQR;
+#X text 230 474 ASQRT;
+#X text 679 396 recommended only with low Q values;
+#X text 326 395 y = 0.5(x+|x|);
+#X text 326 421 y = |x|;
+#X text 326 447 y = x²;
+#X text 326 473 y = sqrt(|x|);
+#X text 680 281 use with caution;
+#X restore 26 195 pd algorithms_help;
+#X text 1333 290 Here you can load the Test Wav File;
+#N canvas 1994 784 450 300 introduction 0;
+#X text 23 62 First you can load the Audiofile that is stored in the
+Folder "Pure Data". Select a distorion Algorithm at the left side of
+the help patch and modify the filter with the three filter faders (violet).
+Frequency is for the Frequency Band that is selected \, the Quality
+for the width of the Band (lower Q = wider Band) and Gain is for the
+loudness of the filter. WIth a high gain you can let the filter scream.
+When you are fine change the mix dry/wet to still hear the original
+Signal.;
+#X text 25 32 INTRODUCTION;
+#X restore 26 144 pd introduction;
 #X connect 1 0 17 0;
 #X connect 3 0 1 0;
-#X connect 4 0 53 0;
+#X connect 4 0 52 0;
 #X connect 5 0 10 0;
 #X connect 6 0 5 0;
-#X connect 7 0 96 0;
-#X connect 8 0 57 0;
-#X connect 9 0 79 0;
-#X connect 10 0 50 0;
-#X connect 11 0 44 0;
+#X connect 7 0 94 0;
+#X connect 8 0 56 0;
+#X connect 9 0 77 0;
+#X connect 10 0 49 0;
+#X connect 11 0 43 0;
 #X connect 12 0 11 0;
 #X connect 13 0 14 0;
 #X connect 14 0 15 0;
-#X connect 15 0 46 0;
-#X connect 16 0 49 0;
+#X connect 15 0 45 0;
+#X connect 16 0 48 0;
 #X connect 16 0 0 0;
 #X connect 16 0 0 1;
-#X connect 17 0 58 0;
+#X connect 17 0 57 0;
 #X connect 18 0 9 0;
 #X connect 19 0 8 0;
-#X connect 44 0 43 0;
-#X connect 45 0 16 0;
+#X connect 43 0 42 0;
+#X connect 44 0 16 0;
+#X connect 46 0 16 0;
 #X connect 47 0 16 0;
-#X connect 48 0 16 0;
-#X connect 51 0 16 0;
-#X connect 54 0 16 0;
-#X connect 55 0 9 0;
-#X connect 56 0 16 0;
-#X connect 59 0 16 0;
+#X connect 50 0 16 0;
+#X connect 53 0 16 0;
+#X connect 54 0 9 0;
+#X connect 55 0 16 0;
+#X connect 58 0 16 0;
+#X connect 59 0 60 0;
 #X connect 60 0 61 0;
 #X connect 61 0 62 0;
-#X connect 62 0 63 0;
-#X connect 64 0 16 0;
-#X connect 79 0 4 0;
-#X connect 80 0 88 0;
-#X connect 81 0 88 1;
-#X connect 82 0 88 2;
-#X connect 84 0 85 0;
-#X connect 85 0 83 0;
-#X connect 86 0 83 0;
-#X connect 87 0 86 0;
-#X connect 88 0 83 0;
-#X connect 92 0 83 0;
-#X connect 93 0 92 0;
-#X connect 97 0 98 0;
+#X connect 63 0 16 0;
+#X connect 77 0 4 0;
+#X connect 78 0 86 0;
+#X connect 79 0 86 1;
+#X connect 80 0 86 2;
+#X connect 82 0 83 0;
+#X connect 83 0 81 0;
+#X connect 84 0 81 0;
+#X connect 85 0 84 0;
+#X connect 86 0 81 0;
+#X connect 90 0 81 0;
+#X connect 91 0 90 0;
+#X connect 95 0 96 0;
