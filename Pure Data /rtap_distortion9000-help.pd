@@ -1,6 +1,6 @@
 #N canvas 308 274 1680 986 12;
-#X obj 485 592 dac~;
-#X floatatom 434 739 5 0 0 0 - - -;
+#X obj 485 605 dac~;
+#X floatatom 434 753 5 0 0 0 - - -;
 #N canvas 0 50 450 250 (subpatch) 0;
 #X array waveform 100 float 5;
 #A 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
@@ -8,102 +8,102 @@
 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
 0;
 #X coords 0 1 99 -1 400 200 1 0 0;
-#X restore 869 642 graph;
-#X obj 437 697 hsl 200 30 0 1 0 1 empty empty Mix 0 -10 1 15 -4034
+#X restore 869 657 graph;
+#X obj 437 698 hsl 200 30 0 1 0 1 empty empty Mix 0 -10 1 15 -4034
 -1 -1 0 1;
-#X msg 301 519 distortionMod \$1;
-#X floatatom 353 400 5 0 0 0 - - -;
-#X obj 356 361 hsl 200 30 1 10 0 1 empty empty Saturation_(1-3-4) -2
+#X msg 302 546 distortionMod \$1;
+#X floatatom 352 419 5 0 0 0 - - -;
+#X obj 355 364 hsl 200 30 1 10 0 1 empty empty Saturation_(1-3-4) -2
 -10 1 15 -4032 -1 -1 10200 1;
-#X obj 875 540 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+#X obj 874 556 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
 1;
-#X obj 165 851 + 6;
-#X floatatom 302 498 3 0 0 0 - - -;
-#X msg 353 422 saturation \$1;
-#X floatatom 352 265 10 0 0 0 - - -;
+#X obj 163 885 + 6;
+#X floatatom 302 504 3 0 0 0 - - -;
+#X msg 352 461 saturation \$1;
+#X floatatom 352 279 10 0 0 0 - - -;
 #X obj 355 224 hsl 200 30 50 22000 1 0 empty empty Frequency 30 -10
 1 15 -159808 -1 -1 0 1;
-#X obj 633 220 hsl 200 30 0.1 16 0 0 empty empty Quality -2 -10 1 15
+#X obj 633 224 hsl 200 30 0.1 16 0 0 empty empty Quality -2 -10 1 15
 -261234 -1 -1 0 1;
-#X floatatom 632 259 5 0 0 0 - - -;
-#X msg 633 283 quality \$1;
-#X obj 484 569 rtap_distortion9000~;
-#X msg 432 761 mix \$1;
-#X obj 163 249 vradio 40 1 0 6 empty empty SOFT_CLIP_WAVESHAPER -40
+#X floatatom 630 279 5 0 0 0 - - -;
+#X msg 630 321 quality \$1;
+#X obj 484 578 rtap_distortion9000~;
+#X msg 434 795 mix \$1;
+#X obj 163 260 vradio 40 1 0 6 empty empty SOFT_CLIP_WAVESHAPER -40
 -10 1 15 -257985 -159808 -1 5;
-#X obj 163 524 vradio 40 1 0 8 empty empty EXOTIC_DISTORTION -40 -10
+#X obj 163 540 vradio 40 1 0 8 empty empty EXOTIC_DISTORTION -40 -10
 1 15 -66577 -258113 -1 0;
-#X text 131 577 ATSR;
+#X text 124 579 ATSR;
 #X text 124 539 FEXP2;
-#X text 124 460 FEXP1;
-#X text 131 420 ATAN;
-#X text 131 380 TANH;
-#X text 131 340 SIG2;
-#X text 138 301 SIG;
-#X text 138 616 SQS;
-#X text 132 656 CUBE;
-#X text 138 697 HWR;
-#X text 138 733 FWR;
-#X text 138 775 SQR;
-#X text 125 815 ASQRT;
+#X text 131 459 FEXP1;
+#X text 131 419 ATAN;
+#X text 131 379 TANH;
+#X text 131 339 SIG2;
+#X text 131 299 SIG;
+#X text 124 619 SQS;
+#X text 124 659 CUBE;
+#X text 124 699 HWR;
+#X text 124 739 FWR;
+#X text 124 779 SQR;
+#X text 124 819 ASQRT;
 #X text 131 259 ARRY;
 #X text 874 515 Here you can activate the waveform, f 37;
-#X text 643 703 ORIGINAL;
-#X text 368 703 DISTORTED;
+#X text 643 697 ORIGINAL;
+#X text 368 697 DISTORTED;
 #X text 204 301 (SAT);
-#X text 202 381 (SAT);
-#X text 203 420 (SAT);
-#X text 332 203 50 Hz;
-#X text 536 206 20kHz;
-#X obj 354 308 s f;
-#X msg 353 286 frequency \$1;
+#X text 202 380 (SAT);
+#X text 202 420 (SAT);
+#X text 332 194 50 Hz;
+#X text 536 223 20kHz;
+#X obj 352 321 s f;
+#X msg 353 302 frequency \$1;
 #X obj 485 519 r f;
-#X obj 633 311 s q;
-#X obj 485 539 r q;
-#X obj 514 539 r~ sig;
-#X obj 521 592 s~ spec;
-#X obj 352 446 s sat;
+#X obj 633 302 s q;
+#X obj 485 562 r q;
+#X obj 512 562 r~ sig;
+#X obj 512 605 s~ spec;
+#X obj 352 504 s sat;
 #X obj 512 519 r sat;
-#X text 209 537 CAREFUL!;
-#X obj 301 543 s mod;
+#X text 209 539 CAREFUL!;
+#X obj 301 540 s mod;
 #X obj 554 519 r mod;
-#X obj 302 476 r mod;
-#X obj 563 540 r fmode;
-#X obj 203 853 s mod;
-#X obj 432 784 s mix;
+#X obj 302 461 r mod;
+#X obj 554 562 r fmode;
+#X obj 212 856 s mod;
+#X obj 432 776 s mix;
 #X obj 595 520 r mix;
-#X obj 634 358 hsl 200 30 0 40 0 0 empty empty Gain -2 -10 1 15 -260097
+#X obj 633 364 hsl 200 30 0 40 0 0 empty empty Gain -2 -10 1 15 -260097
 -1 -1 0 1;
-#X floatatom 633 396 5 0 0 0 - - -;
-#X msg 634 420 gain \$1;
-#X obj 634 448 s g;
+#X floatatom 630 419 5 0 0 0 - - -;
+#X msg 630 461 gain \$1;
+#X obj 634 461 s g;
 #X obj 619 540 r g;
-#X text 853 290 Here you can listen to external audio;
-#X text 209 693 just for low Qs;
-#X text 209 657 just for low Qs;
-#X text 357 861 If you are happy check out the multiband patch!;
-#X text 226 63 WELCOME TO POWER DISTORTION!;
-#X text 993 190 3 Load a 44.1 kHz WAVE File at the openpanel switch
+#X text 853 301 Here you can listen to external audio;
+#X text 209 696 just for low Qs;
+#X text 209 656 just for low Qs;
+#X text 357 850 If you are happy check out the multiband patch!;
+#X text 226 51 WELCOME TO POWER DISTORTION!;
+#X text 993 191 3 Load a 44.1 kHz WAVE File at the openpanel switch
 ;
-#X text 993 74 AUDIO INPUTS;
-#X text 993 154 2 use your microphone or audio input with soundflower
+#X text 993 71 AUDIO INPUTS;
+#X text 993 151 2 use your microphone or audio input with soundflower
 at the adc unit, f 69;
-#X text 385 331 Only for SIG \, TANH and ATAN!;
-#X text 1346 267 !!! TEST IT WITH MUSIC !!!;
-#X text 212 814 SUPER FUZZY!!!;
-#X text 217 94 1 Select a Distortion Algorithm on the left side 2 Adjust
+#X text 385 340 Only for SIG \, TANH and ATAN!;
+#X text 1346 259 !!! TEST IT WITH MUSIC !!!;
+#X text 212 815 SUPER FUZZY!!!;
+#X text 226 91 1 Select a Distortion Algorithm on the left side 2 Adjust
 the bandpass filter with f \, q and gain parameters 3 If your algorithm
 includes a saturation parameter modify it 4 Mix it with the original
 signal using the mix slider, f 63;
 #X text 994 122 1 Just test the algorithm with a simple waveform at
 test signal, f 64;
-#X obj 329 496 + 9;
-#X obj 1388 351 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+#X obj 329 498 + 9;
+#X obj 1388 361 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
-#X msg 1416 351 start;
-#X msg 1467 351 stop;
-#X obj 1239 427 s~ sig;
-#X obj 1152 349 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1
+#X msg 1416 361 start;
+#X msg 1467 361 stop;
+#X obj 1239 421 s~ sig;
+#X obj 1152 361 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1
 0 1;
 #N canvas 1973 -220 450 300 sine 0;
 #X obj 84 75 osc~ 440;
@@ -117,7 +117,7 @@ test signal, f 64;
 #X connect 3 0 1 1;
 #X connect 4 0 3 0;
 #X connect 5 0 1 0;
-#X restore 1152 374 pd sine;
+#X restore 1152 361 pd sine;
 #N canvas 1973 -220 450 300 saw 0;
 #X obj 105 165 *~;
 #X obj 106 206 outlet~;
@@ -130,8 +130,8 @@ test signal, f 64;
 #X connect 3 0 2 0;
 #X connect 4 0 5 0;
 #X connect 5 0 0 0;
-#X restore 1256 370 pd saw;
-#X obj 1256 349 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1
+#X restore 1256 361 pd saw;
+#X obj 1256 361 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1
 0 1;
 #N canvas 0 23 450 300 browse 0;
 #X obj 156 95 openpanel;
@@ -147,12 +147,12 @@ test signal, f 64;
 #X connect 3 0 0 0;
 #X connect 4 0 2 0;
 #X connect 5 0 2 0;
-#X restore 1387 375 pd browse;
-#X obj 1153 337 hradio 8 1 0 1 empty empty Sine_440Hz 0 -8 1 15 -262144
+#X restore 1387 361 pd browse;
+#X obj 1153 341 hradio 8 1 0 1 empty empty Sine_440Hz 0 -8 1 15 -262144
 -1 -1 6;
-#X obj 1254 338 hradio 8 1 0 1 empty empty Saw_440Hz 0 -8 1 15 -262144
+#X obj 1254 341 hradio 8 1 0 1 empty empty Saw_440Hz 0 -8 1 15 -262144
 -1 -1 6;
-#X obj 1388 338 hradio 8 1 0 1 empty empty Browse_sample 0 -8 1 15
+#X obj 1388 341 hradio 8 1 0 1 empty empty Browse_sample 0 -8 1 15
 -262144 -1 -1 6;
 #N canvas 1973 64 1194 737 mic 0;
 #X obj 105 165 *~;
@@ -166,12 +166,12 @@ test signal, f 64;
 #X connect 3 0 2 0;
 #X connect 4 0 0 0;
 #X connect 5 0 4 0;
-#X restore 1011 374 pd mic in;
-#X obj 1010 350 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1
+#X restore 1011 361 pd mic in;
+#X obj 1010 361 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1
 0 1;
-#X obj 991 343 hradio 8 1 0 1 empty empty Mic_In 0 -8 1 15 -262144
+#X obj 991 341 hradio 8 1 0 1 empty empty Mic_In 0 -8 1 15 -262144
 -1 -1 0;
-#X text 1177 289 test signals;
+#X text 1177 301 test signals;
 #N canvas 0 23 358 309 waveform 0;
 #X obj 132 173 tabwrite~ waveform;
 #X obj 134 134 metro 100;
@@ -180,12 +180,12 @@ test signal, f 64;
 #X connect 1 0 0 0;
 #X connect 2 0 0 0;
 #X connect 3 0 1 0;
-#X restore 875 564 pd waveform;
+#X restore 874 596 pd waveform;
 #X obj 22 52 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0 1
 ;
-#X msg 22 72 \; pd dsp \$1;
-#X text 67 49 <-- DSP on/off;
-#X text 993 96 Click on a toggle to choose the desired audio source
+#X msg 22 92 \; pd dsp \$1;
+#X text 67 51 <-- DSP on/off;
+#X text 993 111 Click on a toggle to choose the desired audio source
 ;
 #N canvas 368 301 1206 535 algorithms_help 0;
 #X text 237 77 ARRY;
@@ -241,8 +241,8 @@ test signal, f 64;
 #X text 326 447 y = x²;
 #X text 326 473 y = sqrt(|x|);
 #X text 680 281 use with caution;
-#X restore 26 195 pd algorithms_help;
-#X text 1333 290 Here you can load the Test Wav File;
+#X restore 22 191 pd algorithms_help;
+#X text 1346 299 Here you can load the Test Wav File;
 #N canvas 1994 784 450 300 introduction 0;
 #X text 23 62 First you can load the Audiofile that is stored in the
 Folder "Pure Data". Select a distorion Algorithm at the left side of
@@ -253,7 +253,7 @@ loudness of the filter. WIth a high gain you can let the filter scream.
 When you are fine change the mix dry/wet to still hear the original
 Signal.;
 #X text 25 32 INTRODUCTION;
-#X restore 26 144 pd introduction;
+#X restore 22 148 pd introduction;
 #X connect 1 0 17 0;
 #X connect 3 0 1 0;
 #X connect 4 0 52 0;

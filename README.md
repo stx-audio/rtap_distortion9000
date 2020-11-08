@@ -53,3 +53,6 @@ Kind regards,
 Lynn, Felix & Stephan
 
 PS: Thanks to our lecturer Markus Hädrich and Thomas Resch
+
+Song test-guitar.wav:
+Charlie Lewis - I Know That You (Royalty Free)
